@@ -29,10 +29,12 @@
 					});
 				</script>
 				
+
+
 				<table class="table1 table-center table-striped table-dark table-hover" >
 					<thead>
 						<tr>
-							<th colspan="15"><h2 class="h4">Listado de Clientes</h2></th>
+							<th colspan="15"><h2 class="h3"> Clientes </h2></th>
 						</tr>
 						<tr>
 							
@@ -45,8 +47,9 @@
 							<th>DUI</th>
 							<th>NIT</th>
 							<th>Nrc</th>	
-							<th colspan="15">Opciones</th>
+							<th colspan="25"> Opciones </th>
 						</tr>
+						
 					</thead>
 					<tbody>
 						<tr>
@@ -67,8 +70,8 @@
 						<td></td>
 							<td></td>
 							<td></td>
-							<td colspan="7"><a href="main.jsp" class="btn btn-success">Agregar</a>
-								<a href="main.jsp" class="btn btn-warning">Cancelar</a></td>
+							<td colspan="7"><a href="IngresarCliente.jsp" class="btn btn-success">Agregar</a>
+								<a href="main.jsp" class="btn btn-warning">Menu</a></td>
 							<td></td>
 							<td></td>	
 						</tr>
