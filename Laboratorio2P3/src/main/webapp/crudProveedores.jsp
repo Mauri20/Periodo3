@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
+
 <html>
 <head>
-
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	<meta charset="ISO-8859-1">
 	<title>Proveedores</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -14,17 +14,18 @@
 
 <script type="text/javascript">
 $(document).ready(function (){
-		$.post('ControllerProveedores',{
+		var label = document.getElementById('texto')
+		$.post('ControllerProveedores'),{
 			//Esta seccion es para enviar peticiones al servidor
-			
+			label
 		}, function (response){
 			//Esta seccion es para recibir informacion
-			let datos = Json.parse(response);
+			let datos = JSON.parse(response);
 			//let datos = response.getAttribute("names");
 			console.log(datos);
 			//HACIENDO LA UNION DE CODIGO PARA MOSTRAR LOS DATOS
 			
-		});
+		};
 	});
 </script>
 <body>
@@ -70,6 +71,7 @@ $(document).ready(function (){
 			</div>
 		</div>
 	</div>
+	<label for="" id="texto">Prueba</label>
 </body>
 
 </html>
