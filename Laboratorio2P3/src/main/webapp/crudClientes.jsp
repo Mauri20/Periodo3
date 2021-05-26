@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Clientes</title>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<meta charset="ISO-8859-1">
+	<title> Clientes </title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 	<link rel="stylesheet" type="text/css" href="style.css">
@@ -28,16 +28,13 @@
 						});
 					});
 				</script>
-				
-
-
-				<table class="table1 table-center table-striped table-dark table-hover" >
+				<table class="table1 table-sm table-center table-striped table-dark table-hover" >
 					<thead>
 						<tr>
-							<th colspan="15"><h2 class="h3"> Clientes </h2></th>
+							<th colspan="15"><h2 class="h2"> Clientes </h2></th>
 						</tr>
 						<tr>
-							
+							<th>Id</th>
 							<th>Nombre</th>
 							<th>Tipo</th>
 							<th>Contacto</th>
@@ -47,7 +44,7 @@
 							<th>DUI</th>
 							<th>NIT</th>
 							<th>Nrc</th>	
-							<th colspan="25"> Opciones </th>
+							<th colspan="15"> Opciones </th>
 						</tr>
 						
 					</thead>
@@ -70,7 +67,7 @@
 						<td></td>
 							<td></td>
 							<td></td>
-							<td colspan="7"><a href="IngresarCliente.jsp" class="btn btn-success">Agregar</a>
+							<td colspan="7"><a href="" class="btn btn-success">Agregar</a>
 								<a href="main.jsp" class="btn btn-warning">Menu</a></td>
 							<td></td>
 							<td></td>	
