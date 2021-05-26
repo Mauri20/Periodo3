@@ -28,33 +28,24 @@ public class ControllerEmpleados extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		
-		
-		String eval= request.getParameter("action");
-		if(eval.equals("go")) {
-			
-			
-			
-			
-			Gson json = new Gson();
-			EmpleadoDao clsUser = new EmpleadoDao();
-			response.sendRedirect("crudEmpleados.jsp");
-			response.getWriter().append(json.toJson(clsUser.MostrarEmpleados()));
-			
-			
-			
-			
-		}else {
-			System.out.println(eval);
+		EmpleadoDao empleadoDao= new EmpleadoDao();
+		Gson json = new Gson();
+		response.getWriter().append(json.toJson(empleadoDao.MostrarEmpleados()));
+		/*String evaluar= request.getParameter("action");
+		if(evaluar!=null) {
+			if(evaluar.equals("go")) {
+				EmpleadoDao empleadoDao= new EmpleadoDao();
+				Gson json = new Gson();
+				response.getWriter().append(json.toJson(empleadoDao.MostrarEmpleados()));
+				response.sendRedirect("crudEmpleados.jsp");
+			}else {
+				System.out.println("Error1");
+				response.sendRedirect("main.jsp");
+			}
+		}else{
+			System.out.println("Error2");
 			response.sendRedirect("main.jsp");
-		}
-		
-		
-		
-		
-		
-		
-		
+		}*/
 	}
 
 	/**
@@ -62,7 +53,8 @@ public class ControllerEmpleados extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		//doGet(request, response);
+		
 	}
 
 }
