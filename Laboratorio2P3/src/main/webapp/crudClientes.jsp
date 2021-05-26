@@ -13,7 +13,7 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-8">
 				<script type="text/javascript">
 					$(document).ready(function (){
 						$.post('ControllerClientes',{
@@ -28,22 +28,36 @@
 						});
 					});
 				</script>
-				<table class="table2 table table-striped table-dark table-hover">
+				
+
+
+				<table class="table1 table-center table-striped table-dark table-hover" >
 					<thead>
 						<tr>
-							<th colspan="7"><h2 class="h2">Listado de Clientes</h2></th>
+							<th colspan="15"><h2 class="h3"> Clientes </h2></th>
 						</tr>
 						<tr>
+							
 							<th>Nombre</th>
+							<th>Tipo</th>
 							<th>Contacto</th>
 							<th>Tel&eacute;fono</th>
 							<th>Direcci&oacute;n</th>
 							<th>Correo</th>
-							<th colspan="2">Opciones</th>
+							<th>DUI</th>
+							<th>NIT</th>
+							<th>Nrc</th>	
+							<th colspan="25"> Opciones </th>
 						</tr>
+						
 					</thead>
 					<tbody>
 						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
 							<td></td>
 							<td></td>
 							<td></td>
@@ -53,8 +67,13 @@
 							<td><a href="" class="btn btn-info">Actualizar</a></td>
 						</tr>
 						<tr>
-							<td colspan="7"><a href="main.jsp" class="btn btn-success">Agregar</a>
-								<a href="main.jsp" class="btn btn-warning">Cancelar</a></td>
+						<td></td>
+							<td></td>
+							<td></td>
+							<td colspan="7"><a href="IngresarCliente.jsp" class="btn btn-success">Agregar</a>
+								<a href="main.jsp" class="btn btn-warning">Menu</a></td>
+							<td></td>
+							<td></td>	
 						</tr>
 					</tbody>
 					&nbsp;

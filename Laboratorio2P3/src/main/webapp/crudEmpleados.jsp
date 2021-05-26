@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta charset="ISO-8859-1">
-	<title>Compras</title>
+	<title>Empleados</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 	<link rel="stylesheet" type="text/css" href="style.css">
@@ -17,14 +17,21 @@
 					
 					<thead>
 						<tr>
-							<th colspan="7"><h2 class="h2">Listado de Compras</h2></th>
+						
+							<th colspan="12"><h2 class="h7">Listado de Empleados</h2></th>
+							
 						</tr>
 						<tr>
 							<th>Nombre</th>
-							<th>Contacto</th>
-							<th>Tel&eacute;fono</th>
+							<th>Apellido</th>
+							<th>Sexo</th>
 							<th>Direcci&oacute;n</th>
-							<th>Correo</th>
+							<th>Tel&eacute;fono</th>
+							<th>Dui</th>
+							<th>Nit</th>
+							<th>Cargo</th>
+							<th>Departamento</th>	
+																			
 							<th colspan="2">
 								Opciones
 							</th>
@@ -37,11 +44,15 @@
 							<td></td>
 							<td></td>
 							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>							
 							<td><a href="" class="btn btn-danger">Eliminar</a></td>
 							<td><a href="" class="btn btn-info">Actualizar</a></td>
 						</tr>
 						<tr>
-							<td colspan="7">
+							<td colspan="20">
 								<a href="main.jsp" class="btn btn-success">Agregar</a>
 								<a href="main.jsp" class="btn btn-warning">Cancelar</a>
 							</td>
