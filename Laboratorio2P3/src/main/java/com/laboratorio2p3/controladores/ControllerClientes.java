@@ -35,19 +35,10 @@ public class ControllerClientes extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		String eval= request.getParameter("action");
-		if(eval.equals("go")) {
-	
-			Gson json = new Gson();
-			ClienteDao clsUser = new ClienteDao();
-			response.getWriter().append(json.toJson(clsUser.MostrarClientes()));
-			
-			
-		}else {
-			System.out.println(eval);
-			response.sendRedirect("main.jsp");
-		}
-		
+		ClienteDao clsUser = new ClienteDao();
+		Gson json = new Gson();
+		response.sendRedirect("crudCliente.jsp");
+		response.getWriter().append(json.toJson(clsUser.MostrarClientes()));
 	}
 
 	/**
