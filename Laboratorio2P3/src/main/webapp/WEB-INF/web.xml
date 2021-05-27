@@ -28,6 +28,12 @@
   	<description></description>
   	<servlet-class>com.laboratorio2p3.controladores.ControllerEmpleados</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ControllerUsuarios</servlet-name>
+  	<display-name>ControllerUsuarios</display-name>
+  	<description></description>
+  	<servlet-class>com.laboratorio2p3.controladores.ControllerUsuarios</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>ControllerAcceso</servlet-name>
   	<url-pattern>/ControllerAcceso</url-pattern>
@@ -43,6 +49,10 @@
   <servlet-mapping>
   	<servlet-name>ControllerEmpleados</servlet-name>
   	<url-pattern>/ControllerEmpleados</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ControllerUsuarios</servlet-name>
+  	<url-pattern>/ControllerUsuarios</url-pattern>
   </servlet-mapping>
   
   

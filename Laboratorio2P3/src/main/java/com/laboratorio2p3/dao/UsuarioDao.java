@@ -117,7 +117,10 @@ public class UsuarioDao {
                 usua.setTipoUsuario(us.getString("Tipo"));
                 //Empleado
                 //usua.setId(us.getInt("idEmpleado"));
-                              
+                Empleado emp = new Empleado();
+                emp.setIdEmpleado(us.getInt("idEmpleado"));
+                emp.setNombre(us.getString("Nombre"));
+                usua.setEmpleado(emp);
                 listado.add(usua);
             }
             
