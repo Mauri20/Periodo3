@@ -32,10 +32,8 @@
 				<td> ${item.idUsuario} </td>
 				<td> ${item.Usuario} </td>
 				
-				<td> ${item.nombre} </td>
+				<td> ${item.Empleado.Nombre} </td>
 				
-				 
-			
 				<td> <a href="ControllerMostrarInformacion?IdUsuario=${item.idUsuario}&Eliminar=btne" class="btn btn-danger">Eliminar </td>
 				<td> <a name="usu" href="add.jsp?Id=${item.idUsuario}&Usuario=${item.Usuario}&Pass=${item.PassWord}" class="btn btn-warning">Actualizar </td>
 			</tr>
@@ -73,20 +71,10 @@
 							<th>Nombre</th>
 							
 								
-							</th>
+							<th colspan="2">Opciones</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td><a href="" class="btn btn-danger">Eliminar</a></td>
-							<td><a href="" class="btn btn-info">Actualizar</a></td>
-						</tr>
-					
 					</tbody>
 					&nbsp;
 				</table>
