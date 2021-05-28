@@ -40,6 +40,12 @@
   	<description></description>
   	<servlet-class>com.laboratorio2p3.controladores.ControllerShowProveedores</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ControllerShowEmpleados</servlet-name>
+  	<display-name>ControllerShowEmpleados</display-name>
+  	<description></description>
+  	<servlet-class>com.laboratorio2p3.controladores.ControllerShowEmpleados</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>ControllerAcceso</servlet-name>
   	<url-pattern>/ControllerAcceso</url-pattern>
@@ -64,6 +70,9 @@
   	<servlet-name>ControllerShowProveedores</servlet-name>
   	<url-pattern>/ControllerShowProveedores</url-pattern>
   </servlet-mapping>
-  
+  <servlet-mapping>
+  	<servlet-name>ControllerShowEmpleados</servlet-name>
+  	<url-pattern>/ControllerShowEmpleados</url-pattern>
+  </servlet-mapping>
   
 </web-app>
