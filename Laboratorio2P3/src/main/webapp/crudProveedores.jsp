@@ -34,16 +34,27 @@
 </head>
 
 <script type="text/javascript">
-function verMarcas(Marcas) {
-	var tabla = document.getElementById('tablaModal');
-	alert('Si hace el click')
-	/*for(let item of Marcas){
-		tabla.innerHTML+=`
-			<tr>
-				<td class="align-middle"> ${item} </td>
-			</tr>
-		`
-	}*/
+function cargar(Id) {
+	$.post('ControllerProveedores',{
+		//Esta seccion es para enviar peticiones al servidor
+		Id
+	}, function (response){
+		//Esta seccion es para recibir informacion
+		let datos = JSON.parse(response);
+		console.log(datos);
+		
+		var tabla = document.getElementById('tablaModal');
+		tabla.innerHTML=``;
+		for(let item of datos){
+			
+			
+			tabla.innerHTML += `
+				<tr>
+					<td class="align-middle"> ${item.NombreMarca} </td>
+				</tr>
+			`
+		}
+	});
 }
 $(document).ready(function (){
 	
@@ -58,6 +69,7 @@ $(document).ready(function (){
 		var tabla = document.getElementById('tablaDatos');
 		for(let item of datos){
 			
+			
 			tabla.innerHTML += `
 				<tr>
 					<td class="align-middle"> ${item.Id} </td>
@@ -66,17 +78,20 @@ $(document).ready(function (){
 					<td class="align-middle"> ${item.Telefono} </td>
 					<td class="align-middle"> ${item.Direccion} </td>
 					<td class="align-middle"> ${item.Correo} </td>
-					<td class="align-middle"> <a class="btn btn-secondary"  onclick="verMarcas("+${item.Marcas}+");"><i class="fas fa-list"></i>&nbsp;Ver</a> </td>
+					<td class="align-middle"> <a data-bs-toggle="modal" data-bs-target="#modalMarcas" type="button" id="button-addon2"  class="btn btn-secondary" onClick="cargar(${item.Id})" id="marcas${item.Id}"><i class="fas fa-list"></i>&nbsp;Ver</a> </td>
 					<td><a href="ControllerShowProveedores?Id=${item.Id}&Eliminar=btne" class="btn btn-danger"><i class="fas fa-user-minus"></i>&nbsp; Eliminar </td>
 					<td><a name="usu" href="add.jsp?Id=${item.idUsuario}&Usuario=${item.Usuario}&Pass=${item.PassWord}" class="btn btn-info"><i class="fas fa-user-edit"></i>&nbsp;Actualizar </td>
 				</tr>
 			`
+				
 		}
+		
 		tabla.innerHTML += `
 			<tr>
 				<td colspan="9">
 				<a href="main.jsp" class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" id="button-addon2"><i class="fas fa-user-plus"></i>&nbsp;Agregar</a>
 				<a href="main.jsp" class="btn btn-warning" ><i class="fas fa-sign-out-alt"></i>&nbsp;Cancelar</a>
+				
 				</td>
 			</tr>
 		`
@@ -115,18 +130,39 @@ $(document).ready(function (){
 			</div>
 		</div>
 	</div>
-	<!-- Modal Beneficiado-->
+	<!-- Modal Agregar-->
 	<div class="modal fade" id="exampleModal" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg modal-dialog-centered">
 			<div class="modal-content bg-dark">
 				<div class="modal-header">
-					<h5 class="modal-title text-white" id="exampleModalLabel">Proveedores</h5>
+					<h5 class="modal-title text-white" id="exampleModalLabel">Marcas</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<table id="tablaModal" class="table table-bordered">
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal Marcas-->
+	<div class="modal fade" id="modalMarcas" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-sm ">
+			<div class="modal-content bodyModal">
+				<div class="modal-header">
+					<h5 class="modal-title text-white" id="exampleModalLabel">Marcas</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body modalB">
+					<table id="tablaModal" class="table table-bordered text-white">
 						<thead>
 							<tr>
 								<th>Marcas</th>
@@ -138,13 +174,11 @@ $(document).ready(function (){
 					</table>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
+					<button type="button" class="btn btn-danger"
 						data-bs-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
 				</div>
 			</div>
 		</div>
 	</div>
 </body>
-
 </html>

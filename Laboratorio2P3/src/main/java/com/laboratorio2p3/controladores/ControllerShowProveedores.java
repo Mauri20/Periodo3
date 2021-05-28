@@ -54,7 +54,7 @@ public class ControllerShowProveedores extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		ProveedorDao provDao= new ProveedorDao();
-		Gson json= new Gson();
+		Gson json= new Gson();		
 		
 		var proveedores= provDao.mostrarProveedores();
 		ArrayList<Proveedor> listado = new ArrayList<Proveedor>();
@@ -84,6 +84,11 @@ public class ControllerShowProveedores extends HttpServlet {
 			System.out.println("Proveedores Null");
 			response.sendRedirect("crudProveedores.jsp");
 		}
+		
+		
+		
+		
+		
 	}
 
 }

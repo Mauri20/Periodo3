@@ -5,7 +5,16 @@ body {
     font-family: sans-serif;
     background:linear-gradient(to right,#3D1D4B,#4215C4);
 }
-
+.bodyModal {
+    /*background:linear-gradient(to right,#3D1D4B,#4215C4);*/
+    background: #171312;
+    
+    box-shadow: 0 0 20px #5A1273;
+}
+.modalB{
+	background: black;
+	color: white;
+}
 .card {
     margin-bottom: 20px;
     border: none

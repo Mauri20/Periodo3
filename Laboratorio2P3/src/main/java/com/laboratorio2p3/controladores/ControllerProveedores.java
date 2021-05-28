@@ -54,7 +54,10 @@ public class ControllerProveedores extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		int id= Integer.parseInt(request.getParameter("Id"));
+		ProveedorDao prov= new ProveedorDao();
+		Gson json = new Gson();
+		response.getWriter().append(json.toJson(prov.Marcas(id)));
 	}
 
 }
