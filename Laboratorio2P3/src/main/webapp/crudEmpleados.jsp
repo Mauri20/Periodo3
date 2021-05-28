@@ -12,9 +12,7 @@
 	
 	
 	<script type="text/javascript">
-	$(document).ready(function ()
-			
-			{
+	$(document).ready(function (){
 		
 			$.post('ControllerShowEmpleados',{
 				//Esta seccion es para enviar peticiones al servidor
