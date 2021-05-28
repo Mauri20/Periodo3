@@ -5,19 +5,20 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import com.google.gson.Gson;
 import com.laboratorio2p3.dao.EmpleadoDao;
 
 /**
- * Servlet implementation class ControllerEmpleados
+ * Servlet implementation class ControllerShowEmpleados
  */
-public class ControllerEmpleados extends HttpServlet {
+public class ControllerShowEmpleados extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public ControllerEmpleados() {
+	public ControllerShowEmpleados() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -29,30 +30,7 @@ public class ControllerEmpleados extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		// response.getWriter().append("Served at: ").append(request.getContextPath());
-
-		/*
-		 * EmpleadoDao empleadoDao= new EmpleadoDao(); Gson json = new Gson();
-		 * response.getWriter().append(json.toJson(empleadoDao.MostrarEmpleados()));
-		 */
-
-		String evaluar = request.getParameter("action");
-
-		if (evaluar != null) {
-
-			if (evaluar.equals("go")) {
-
-				response.sendRedirect("crudEmpleados.jsp");
-
-			} else {
-				System.out.println("Error1 go");
-				response.sendRedirect("main.jsp");
-			}
-		} else {
-			System.out.println("Error2");
-			response.sendRedirect("main.jsp");
-		}
-
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -63,6 +41,22 @@ public class ControllerEmpleados extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// doGet(request, response);
+
+		EmpleadoDao empledao = new EmpleadoDao();
+		Gson json = new Gson();
+
+		var empleadooos = empledao.MostrarEmpleados();
+
+		if (empleadooos != null) {
+			for (var iterar : empleadooos) {
+				System.out.println(iterar.getNombre());
+			}
+			response.setCharacterEncoding("UTF8");
+			response.getWriter().append(json.toJson(empleadooos));
+		} else {
+			System.out.println("Empleados null");
+			response.sendRedirect("crudEmpleados.jsp");
+		}
 
 	}
 
