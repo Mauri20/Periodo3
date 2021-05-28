@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 import com.google.gson.Gson;
 import com.laboratorio2p3.dao.ClienteDao;
 import com.laboratorio2p3.dao.EmpleadoDao;
+import com.laboratorio2p3.dao.UsuarioDao;
 import com.laboratorio2p3.entidades.Cliente;
 
 /**
@@ -35,10 +36,14 @@ public class ControllerClientes extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		ClienteDao clsUser = new ClienteDao();
+		ClienteDao cliente = new ClienteDao();
 		Gson json = new Gson();
-		response.sendRedirect("crudCliente.jsp");
-		response.getWriter().append(json.toJson(clsUser.MostrarClientes()));
+		response.setCharacterEncoding("UTF8");
+		response.getWriter().append(json.toJson(cliente.MostrarClientes()));
+		
+		for(var iterar : cliente.MostrarClientes()) {
+			System.out.println(iterar.getNombre());
+	    }
 	}
 
 	/**
@@ -46,9 +51,9 @@ public class ControllerClientes extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//doGet(request, response);
 		doGet(request, response);
-
+		
+		
 	}
 	
 	
