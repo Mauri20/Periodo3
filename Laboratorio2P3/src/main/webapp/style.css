@@ -85,12 +85,10 @@ body {
     margin-top: 23%;
 }
 .table2{
-    width: 100%;
-    padding: 40px;
+    
     background: black;
     border-radius: 5px;
     text-align: center;
-    margin-top: 10%;
 }
 .oculto{
 	display:none;

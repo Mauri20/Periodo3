@@ -140,7 +140,7 @@ public class ProveedorDao {
     public void elimiarProveedor(int IdProveedor) {
         try {
             CallableStatement statement = con.prepareCall("delete from proveedormarca where idProveedor=" + IdProveedor + ";");
-            if (statement.executeUpdate() == 1) {
+            if (statement.executeUpdate() >= 1) {
                 CallableStatement statement2 = con.prepareCall("call sp_d_Proveedor(?);");
                 statement2.setInt("pIdProveedor", IdProveedor);
                 if (statement2.executeUpdate()== 1) {
