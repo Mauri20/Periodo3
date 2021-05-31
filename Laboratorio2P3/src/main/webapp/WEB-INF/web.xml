@@ -46,6 +46,18 @@
   	<description></description>
   	<servlet-class>com.laboratorio2p3.controladores.ControllerShowEmpleados</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ControllerMarcas</servlet-name>
+  	<display-name>ControllerMarcas</display-name>
+  	<description></description>
+  	<servlet-class>com.laboratorio2p3.controladores.ControllerMarcas</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ControllerSaveUpdateProveedores</servlet-name>
+  	<display-name>ControllerSaveUpdateProveedores</display-name>
+  	<description></description>
+  	<servlet-class>com.laboratorio2p3.controladores.ControllerSaveUpdateProveedores</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>ControllerAcceso</servlet-name>
   	<url-pattern>/ControllerAcceso</url-pattern>
@@ -73,6 +85,14 @@
   <servlet-mapping>
   	<servlet-name>ControllerShowEmpleados</servlet-name>
   	<url-pattern>/ControllerShowEmpleados</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ControllerMarcas</servlet-name>
+  	<url-pattern>/ControllerMarcas</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ControllerSaveUpdateProveedores</servlet-name>
+  	<url-pattern>/ControllerSaveUpdateProveedores</url-pattern>
   </servlet-mapping>
   
 </web-app>

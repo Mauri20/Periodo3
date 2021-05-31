@@ -7,13 +7,10 @@ body {
 }
 .bodyModal {
     /*background:linear-gradient(to right,#3D1D4B,#4215C4);*/
-    background: #171312;
-    
-    box-shadow: 0 0 20px #5A1273;
+    box-shadow: 3px 3px 20px 10px #5A1273;
 }
-.modalB{
-	background: black;
-	color: white;
+.modalA{
+	box-shadow: 3px 3px 30px 5px #5A1273;
 }
 .card {
     margin-bottom: 20px;

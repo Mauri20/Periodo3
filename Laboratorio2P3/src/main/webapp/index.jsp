@@ -21,8 +21,6 @@
 	                    <input class="form-check-input" type="checkbox" name="tipo" id="ch">
 						<label class="form-check-label text-white" for="ch">&nbsp;&nbsp;&nbsp;Admin</label>
 						<br>
-						<br>
-	                    <a class="forgot text-muted" href="#">Crear Cuenta?</a> 
 	                    <input type="submit" name="" value="Acceder" href="#">
 	                </form>
 	            </div>
