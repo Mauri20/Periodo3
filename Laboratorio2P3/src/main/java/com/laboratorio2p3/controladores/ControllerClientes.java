@@ -67,6 +67,14 @@ public class ControllerClientes extends HttpServlet {
 		
 	}
 	
-	
+	//<td class="align-middle"> ${item.Nombre} </td>
+	//<td class="align-middle"> ${item.Tipo} </td>
+	//<td class="align-middle"> ${item.Contacto} </td>
+	//<td class="align-middle"> ${item.Telefono} </td>
+	//<td class="align-middle"> ${item.Direccion} </td>
+	//<td class="align-middle"> ${item.Correo} </td>
+	//<td class="align-middle"> ${item.Dui} </td>
+	//<td class="align-middle"> ${item.Nit} </td>
+	//<td class="align-middle"> ${item.Nrc} </td>
 	
 }

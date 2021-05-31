@@ -1,12 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title> Clientes </title>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
@@ -31,13 +36,16 @@
 </head>
 <script type="text/javascript">
 
+
+
+
 function cargar(Id) {
 	$.post('ControllerClientes',{
 		//Esta seccion es para enviar peticiones al servidor
 		Id
-	}, function (resp){
+	}, function (response){
 		//Esta seccion es para recibir informacion
-		let datos = JSON.parse(resp);
+		let datos = JSON.parse(response);
 		console.log(datos);
 		
 		var tabla = document.getElementById('tablaModal');
@@ -64,8 +72,8 @@ function cargar(Id) {
 				
 			}, function (response){
 				//Esta seccion es para recibir informacion
-				let variable = JSON.parse(resp);
-				console.log(resp);
+				let variable = JSON.parse(response);
+				console.log(response);
 				
 				
 				var tabla = document.getElementById('tablaDatos');
@@ -73,7 +81,6 @@ function cargar(Id) {
 						
 					tabla.innerHTML += `
 					<tr>
-						<td class="align-middle"> ${item.IdCliente} </td>
 						<td class="align-middle"> ${item.Nombre} </td>
 						<td class="align-middle"> ${item.Tipo} </td>
 						<td class="align-middle"> ${item.Contacto} </td>
@@ -83,10 +90,9 @@ function cargar(Id) {
 						<td class="align-middle"> ${item.Dui} </td>
 						<td class="align-middle"> ${item.Nit} </td>
 						<td class="align-middle"> ${item.Nrc} </td>
-
 											
 						<td><a href="ControllerShowClientes?Id=${item.IdCliente}&Eliminar=btne" class="btn btn-danger"><i class="fas fa-user-minus"></i>&nbsp; Eliminar </td>
-						<td><a name="usu" href="add.jsp?Id=${item.idUsuario}&Usuario=${item.Usuario}&Pass=${item.PassWord}" class="btn btn-info"><i class="fas fa-user-edit"></i>&nbsp;Actualizar </td>										
+						<td><a name="usu" href="add.jsp?Id=${item.idUsuario}&Usuario=${item.Usuario}&Pass=${item.PassWord}" class="btn btn-info"><i class="fas fa-user-edit"></i>&nbsp; Actualizar </td>						
 					</tr>			
 				`
 				}
@@ -97,7 +103,7 @@ function cargar(Id) {
 					<tr>
 						<td colspan="20">
 						<a href="main.jsp" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" id="button-addon2"> <i class="fas fa-user-plus"></i>&nbsp;> Agregar</a>
-					    <a href="main.jsp" class="btn btn-warning" ><i class="fas fa-sign-out-alt"></i>&nbsp; Volver</a>
+					    <a href="main.jsp" class="btn btn-warning" ><i class="fas fa-sign-out-alt"></i>&nbsp;Volver</a>
 					    </td>
 					</tr>
 				`
@@ -105,7 +111,7 @@ function cargar(Id) {
 		});
 	
 	</script>
-	<body>
+<body>
 
 
 	<div class="container">
@@ -116,7 +122,7 @@ function cargar(Id) {
 					<thead>
 						<tr>
 
-							<th colspan="12"><h2 class="h4"> Clientes </h2></th>
+							<th colspan="12"><h2 class="h3"> Clientes </h2></th>
 
 						</tr>
 						<tr>
@@ -130,6 +136,7 @@ function cargar(Id) {
 							<th> Dui </th>
 							<th> Nit </th>
 							<th> Nrc </th>
+							<th></th>
 							<th colspan="2"> Opciones </th>
 							
 							
@@ -151,7 +158,7 @@ function cargar(Id) {
 		<div class="modal-dialog modal-lg modal-dialog-centered">
 			<div class="modal-content bg-dark">
 				<div class="modal-header">
-					<h5 class="modal-title text-white" id="exampleModalLabel">Agregar Empleado</h5>
+					<h5 class="modal-title text-white" id="exampleModalLabel"> Agregar </h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>
@@ -160,8 +167,8 @@ function cargar(Id) {
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
-						data-bs-dismiss="modal">Cancelar</button>
-					<button type="button" class="btn btn-primary">Guardar Cambios</button>
+						data-bs-dismiss="modal"> Cancelar </button>
+					<button type="button" class="btn btn-primary"> Guardar </button>
 				</div>
 			</div>
 		</div>
