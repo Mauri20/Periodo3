@@ -16,7 +16,7 @@
 			<div class="col-md-8">
 				<script type="text/javascript">
 					$(document).ready(function (){
-						$.post('ControllerClientes',{
+						$.get('ControllerClientes',{
 							//Esta seccion es para enviar peticiones al servidor
 							
 						}, function (response){
@@ -61,7 +61,7 @@
 							<td></td>
 							<td></td>
 							<td><a href="" class="btn btn-danger">Eliminar</a></td>
-							<td><a href="" class="btn btn-info">Actualizar</a></td>
+							
 						</tr>
 						<tr>
 						<td></td>
