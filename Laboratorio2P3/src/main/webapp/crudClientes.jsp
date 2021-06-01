@@ -48,17 +48,7 @@ function cargar(Id) {
 		let datos = JSON.parse(response);
 		console.log(datos);
 		
-		var tabla = document.getElementById('tablaModal');
-		tabla.innerHTML=``;
-		for(let item of datos){
-			
-			
-			tabla.innerHTML += `
-				<tr>
-					<td class="align-middle"> ${item.Nombre} </td>
-				</tr>
-			`
-		}
+		
 	});
 }
 
@@ -118,7 +108,7 @@ function cargar(Id) {
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<table class="table2 table table-striped table-dark" id="tablaDatos">
+				<table id="tablaDatos" class="table2 table table-striped table-dark">
 
 					<thead>
 						<tr>
@@ -128,7 +118,7 @@ function cargar(Id) {
 						</tr>
 						<tr>
 						
-							
+							<th>Id</th>
 							<th>Nombre</th>
 							<th>Tipo</th>
 							<th>Contacto</th>
