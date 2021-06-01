@@ -1,15 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ page import="com.laboratorio2p3.entidades.Login" %>
+
 <!DOCTYPE html>
 <html>
+
 <head>
+
+
+
 <meta charset="ISO-8859-1">
+
 <title> Clientes </title>
-
-
-
-
-
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
@@ -34,11 +36,9 @@
 
 
 </head>
+</head>
+
 <script type="text/javascript">
-
-
-
-
 function cargar(Id) {
 	$.post('ControllerClientes',{
 		//Esta seccion es para enviar peticiones al servidor
@@ -55,7 +55,7 @@ function cargar(Id) {
 			
 			tabla.innerHTML += `
 				<tr>
-					<td class="align-middle"> ${item.NombreMarca} </td>
+					<td class="align-middle"> ${item.Nombre} </td>
 				</tr>
 			`
 		}
@@ -81,6 +81,7 @@ function cargar(Id) {
 						
 					tabla.innerHTML += `
 					<tr>
+						<td class="align-middle"> ${item.IdCliente} </td>
 						<td class="align-middle"> ${item.Nombre} </td>
 						<td class="align-middle"> ${item.Tipo} </td>
 						<td class="align-middle"> ${item.Contacto} </td>
@@ -101,7 +102,7 @@ function cargar(Id) {
 					
 				tabla.innerHTML += `
 					<tr>
-						<td colspan="20">
+						<td colspan="25">
 						<a href="main.jsp" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" id="button-addon2"> <i class="fas fa-user-plus"></i>&nbsp;> Agregar</a>
 					    <a href="main.jsp" class="btn btn-warning" ><i class="fas fa-sign-out-alt"></i>&nbsp;Volver</a>
 					    </td>
@@ -122,22 +123,24 @@ function cargar(Id) {
 					<thead>
 						<tr>
 
-							<th colspan="12"><h2 class="h3"> Clientes </h2></th>
+							<th colspan="18"><h2 class="h4"> Clientes </h2></th>
 
 						</tr>
 						<tr>
 						
-							<th> Nombre </th>
-							<th> Tipo </th>
-							<th> Contacto </th>
-							<th> Tel&eacute;fono </th>
-							<th> Direcci&oacute;n </th>
-							<th> Correo </th>
-							<th> Dui </th>
-							<th> Nit </th>
-							<th> Nrc </th>
+							
+							<th>Nombre</th>
+							<th>Tipo</th>
+							<th>Contacto</th>
+							<th>Tel&eacute;fono</th>
+							<th>Direcci&oacute;n</th>
+							<th>Correo</th>
+							<th>Dui</th>
+							<th>Nit</th>
+							<th>Nrc</th>
 							<th></th>
-							<th colspan="2"> Opciones </th>
+							<th></th>
+							<th colspan="2">Opciones </th>
 							
 							
 						</tr>
@@ -158,7 +161,7 @@ function cargar(Id) {
 		<div class="modal-dialog modal-lg modal-dialog-centered">
 			<div class="modal-content bg-dark">
 				<div class="modal-header">
-					<h5 class="modal-title text-white" id="exampleModalLabel"> Agregar </h5>
+					<h5 class="modal-title text-white" id="exampleModalLabel">Agregar</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>
@@ -167,8 +170,8 @@ function cargar(Id) {
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
-						data-bs-dismiss="modal"> Cancelar </button>
-					<button type="button" class="btn btn-primary"> Guardar </button>
+						data-bs-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-primary">Guardar</button>
 				</div>
 			</div>
 		</div>
