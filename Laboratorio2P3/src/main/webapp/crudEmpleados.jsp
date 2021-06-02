@@ -39,31 +39,6 @@
 
 
 
-function cargar(Id) {
-	$.post('ControllerEmpleados',{
-		//Esta seccion es para enviar peticiones al servidor
-		Id
-	}, function (response){
-		//Esta seccion es para recibir informacion
-		let datos = JSON.parse(response);
-		console.log(datos);
-		
-		var tabla = document.getElementById('tablaModal');
-		tabla.innerHTML=``;
-		for(let item of datos){
-			
-			
-			tabla.innerHTML += `
-				<tr>
-					<td class="align-middle"> ${item.NombreMarca} </td>
-				</tr>
-			`
-		}
-	});
-}
-
-
-
 	$(document).ready(function (){
 		
 			$.post('ControllerShowEmpleados',{
@@ -107,10 +82,10 @@ function cargar(Id) {
 			});
 		});
 	
+	
+	
 	</script>
 <body>
-
-
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
@@ -145,24 +120,113 @@ function cargar(Id) {
 		</div>
 	</div>
 	
+	
+	
 	<!-- Modal Agregar-->
 	<div class="modal fade" id="exampleModal" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg modal-dialog-centered">
 			<div class="modal-content bg-dark">
 				<div class="modal-header">
-					<h5 class="modal-title text-white" id="exampleModalLabel">Agregar Empleado</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"
-						aria-label="Close"></button>
+					<h5 class="modal-title text-white" id="exampleModalLabel">Agregar Empleado</h5>					
 				</div>
-				<div class="modal-body">
-					
+				
+				
+				
+				<div class="modal-body alert alert-success m-2" role="alert">
+					<div class="col-12">
+						<form action="" method="">
+						
+						
+							<div class="row">
+								<input type="hidden" name="Id" id="id" value="0" disabled>
+								
+								
+								<div class="col-lg-6 my-1">
+									<label for="nombreEmple" class="form-label">Nombre:</label>
+									<input required type="text" class="form-control" id="nombreEmple" name="Nombre" placeholder="Nombre de empleado">
+								</div>
+								
+								
+								<div class="col-lg-6 my-1">
+									<label for="ApellidoEmple" class="form-label">Apellido:</label>
+									<input required type="text" class="form-control" name="Apellido" id="ApellidoEmple" placeholder="Apellido de empleado">
+								</div>
+								
+								
+								<div class="col-lg-6 my-1">
+									<label for="Sexo" class="form-label">Sexo:</label>
+									<input required type="text" name="SexoEmple" class="form-control" id="Sexo" placeholder=" ">
+								</div>
+								
+												
+								
+								<div class="col-lg-6 my-1">
+									<label for="correo" class="form-label">Tel&eacute;fono:</label>
+									<input required type="text" name="Telefono" class="form-control" id="telef" placeholder="">
+								</div>
+								
+								
+								<div class="col-lg-6 my-1">
+									<label for="nit" class="form-label">Dui:</label>
+									<input required type="text" name="DuiEmple"  class="form-control" id="Dui" placeholder="">
+								</div>
+								
+								
+									<div class="col-lg-6 my-1">
+									<label for="nrc" class="form-label">Nit:</label>
+									<input required type="text" name="NitEmple"  class="form-control" id="Nit" placeholder="">
+								</div>
+								
+								
+								
+								<div class="col-lg-6 my-1">
+									<label for="nrc" class="form-label">Cargo:</label>
+									<input required type="text" name="CargoEmple"  class="form-control" id="Cargo" placeholder="">
+								</div>
+								
+								
+								<div class="col-lg-6 my-1">
+									<label for="nrc" class="form-label">Departamento:</label>
+									<input required type="text" name="DepartamentoEmple"  class="form-control" id="Departamento" placeholder="">
+								</div>
+								
+								
+								<div class="col-lg-12 my-1">
+									<label for="direccion" class="form-label">Direcci&oacute;n:</label>
+									<textarea class="form-control" name="Direccion" id="direc" rows="3"></textarea>
+								</div>
+								
+																					
+																			
+								<div class="alert bg-success col-12 oculto" id="result">
+									<div class="row justify-content-center text-white text-center">
+										<p id="texto"> 
+											
+										</p>
+									</div>
+								</div>
+								
+							</div>
+							
+							
+							<center class="mt-2">
+								<button onclick="ejecutar()" type="button" class="btn btn-primary"><span class="fas fa-paper-plane"></span>Registrar Empleado</button>
+							</center>
+							
+							
+						</form>
+					</div>
 				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-bs-dismiss="modal">Cancelar</button>
-					<button type="button" class="btn btn-primary">Guardar Cambios</button>
+				
+				
+				<div class="modal-footer">					
+					<button type="button" class="btn btn-danger" data-bs-dismiss="modal"><span class="fas fa-sign-out-alt"></span>Close</button>
 				</div>
+				
+				
+			
+			
 			</div>
 		</div>
 	</div>
