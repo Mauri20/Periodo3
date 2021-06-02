@@ -78,21 +78,10 @@
   	<description></description>
   	<servlet-class>com.laboratorio2p3.controladores.ControllerSaveUpdateProveedores</servlet-class>
   </servlet>
-<<<<<<< Updated upstream
+
   
-  
-  
-  
-  
-  
-=======
-  <servlet>
-  	<servlet-name>ControllerShowClientes</servlet-name>
-  	<display-name>ControllerShowClientes</display-name>
-  	<description></description>
-  	<servlet-class>com.laboratorio2p3.controladores.ControllerShowClientes</servlet-class>
-  </servlet>
->>>>>>> Stashed changes
+
+
   <servlet-mapping>
   	<servlet-name>ControllerAcceso</servlet-name>
   	<url-pattern>/ControllerAcceso</url-pattern>

@@ -106,7 +106,7 @@ function cargar(Id) {
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<table id="tablaDatos" class="table2 table table-striped table-dark">
+				<table id="tablaDatos" class="table2 table-center table-sm table-striped table-dark">
 
 					<thead>
 						<tr>
@@ -126,11 +126,8 @@ function cargar(Id) {
 							<th>Dui</th>
 							<th>Nit</th>
 							<th>Nrc</th>
-							<th></th>
-							<th></th>
+
 							<th colspan="2">Opciones </th>
-							<th></th>
-							<th></th>
 							
 							
 						</tr>
