@@ -103,8 +103,6 @@ function cargar(Id) {
 	
 	</script>
 <body>
-
-
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
@@ -131,6 +129,8 @@ function cargar(Id) {
 							<th></th>
 							<th></th>
 							<th colspan="2">Opciones </th>
+							<th></th>
+							<th></th>
 							
 							
 						</tr>
