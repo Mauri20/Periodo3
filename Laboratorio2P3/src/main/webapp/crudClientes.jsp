@@ -84,41 +84,44 @@ function cargar(Id) {
 											
 						<td><a href="ControllerShowClientes?Id=${item.IdCliente}&Eliminar=btne" class="btn btn-danger"><i class="fas fa-trash-alt"></i></i>&nbsp; Eliminar </td>
 						<td><a name="usu" href="add.jsp?Id=${item.idUsuario}&Usuario=${item.Usuario}&Pass=${item.PassWord}" class="btn btn-info"><i class="fas fa-pen-square"></i></i>&nbsp; Actualizar </td>						
-					</tr>			
+					</tr>		
+					
+					
 				`
 				}
 					
-					
+			
 					
 				tabla.innerHTML += `
 					<tr>
 						<td colspan="25">
 						<a href="main.jsp" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" id="button-addon2"> <i class="fas fa-external-link-alt"></i></i>&nbsp; Agregar </a>
-					    <a href="main.jsp" class="btn btn-warning" ><i class="fas fa-home"></i>&nbsp; Menú </a>
+					    <a href="main.jsp" class="btn btn-warning" ><i class="fas fa-home"></i>&nbsp; Menu </a>
 					    </td>
 					</tr>
 				`
 			});
 		});
 	
-	$("#btne").click(function (){
-		swal({
-		  title: "¿Está seguro?",
-		  text: "Una vez eliminado, no podrá recuperar este archivo!",
-		  icon: "warning",
-		  buttons: true,
-		  dangerMode: true,
-		})
-		.then((willDelete) => {
-		  if (willDelete) {
-			swal("El archivo ha sido eliminado!", {
-			  icon: "success",
-			});
-		  } else {
-			swal("Operación cancelada!");
-		  }
-		});	
-	});
+		$("btne").click(function (){
+					swal({
+					title: "Estas seguro?",
+					text: "Una vez eliminado, no podras recuperar este archivo!",
+					icon: "warning",
+					buttons: true,
+					dangerMode: true,
+					})
+					.then((willDelete) => {
+					if (willDelete) {
+						swal("El archivo ha sido eliminado!", {
+						icon: "success",
+						});
+					} else {
+						swal("Operacion cancelada!");
+					}
+					});	
+				});
+	
 	</script>
 	
 <body>
@@ -168,7 +171,7 @@ function cargar(Id) {
 			<div class="modal-content  bg-muted modalA">
 				<div class="modal-header">
 				
-					<h6 class="modal-title text-black font-weight-bold font-italic Itálica text-success col text-center" id="exampleModalLabel">AGREGAR</h6>
+					<h6 class="modal-title text-black font-weight-bold Itï¿½lica text-dark col text-center" id="exampleModalLabel">AGREGAR</h6>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>
