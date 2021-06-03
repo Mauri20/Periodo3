@@ -78,6 +78,12 @@
   	<description></description>
   	<servlet-class>com.laboratorio2p3.controladores.ControllerSaveUpdateProveedores</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ControllerShowUsuarios</servlet-name>
+  	<display-name>ControllerShowUsuarios</display-name>
+  	<description></description>
+  	<servlet-class>com.laboratorio2p3.controladores.ControllerShowUsuarios</servlet-class>
+  </servlet>
 
   
 
@@ -130,6 +136,10 @@
   <servlet-mapping>
   	<servlet-name>ControllerSaveUpdateProveedores</servlet-name>
   	<url-pattern>/ControllerSaveUpdateProveedores</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ControllerShowUsuarios</servlet-name>
+  	<url-pattern>/ControllerShowUsuarios</url-pattern>
   </servlet-mapping>
   
   

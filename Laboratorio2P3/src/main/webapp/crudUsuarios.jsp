@@ -10,10 +10,55 @@
 	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	
+
+	
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+	crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+	integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+	crossorigin="anonymous" />
+<link rel="stylesheet" type="text/css" href="style.css">
+<script
+	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"
+	integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"
+	integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc"
+	crossorigin="anonymous"></script>
+
+	
+	
+	</head>
+	
+	
 	<script type="text/javascript">
+	
+	function cargar(Id) {
+		$.post('ControllerUsuarios',{
+			//Esta seccion es para enviar peticiones al servidor
+			Id
+		}, function (response){
+			//Esta seccion es para recibir informacion
+			let datos = JSON.parse(response);
+			console.log(datos);
+			
+			
+		});
+	}
+	
+	
+	
+	
 	$(document).ready(function (){
 		
-		$.get('ControllerUsuarios',{
+		$.get('ControllerShowUsuarios',{
 			
 			//Esta seccion es para enviar peticiones al servidor
 			
@@ -29,12 +74,12 @@
 				
 			tabla.innerHTML += `
 			<tr>
-				<td> ${item.idUsuario} </td>
-				<td> ${item.Usuario} </td>
+				<td class="align-middle"> ${item.idUsuario} </td>
+				<td class="align-middle"> ${item.Usuario} </td>
 				
-				<td> ${item.Empleado.Nombre} </td>
+				<td class="align-middle"> ${item.Empleado.Nombre} </td>
 				
-				<td> <a href="ControllerMostrarInformacion?IdUsuario=${item.idUsuario}&Eliminar=btne" class="btn btn-danger">Eliminar </td>
+				<td> <a href="ControllerShowUsuarios?IdUsuario=${item.idUsuario}&Eliminar=btne" class="btn btn-danger">Eliminar </td>
 				<td> <a name="usu" href="add.jsp?Id=${item.idUsuario}&Usuario=${item.Usuario}&Pass=${item.PassWord}" class="btn btn-warning">Actualizar </td>
 			</tr>
 			
@@ -44,8 +89,9 @@
 		}
 		tabla.innerHTML += `
 			<tr>
-				<td colspan="20"><a href="main.jsp" class="btn btn-success">Agregar</a>
-					<a href="main.jsp" class="btn btn-warning">Volver</a></td>
+			<td colspan="20">
+			<a href="main.jsp" class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" id="button-addon2"><i class="fas fa-user-plus"></i>&nbsp;Agregar</a>
+			<a href="main.jsp" class="btn btn-warning" ><i class="fas fa-sign-out-alt"></i>&nbsp;Cancelar</a>
 			</tr>
 			
 		`
@@ -54,7 +100,7 @@
 	});
 	</script>
 	
-</head>
+
 <body>
 	<div class="container">
 		<div class="row">
@@ -81,6 +127,40 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- Modal Agregar-->
+	<div class="modal fade" id="exampleModal" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg modal-dialog-centered">
+			<div class="modal-content bg-dark">
+				<div class="modal-header">
+					<h5 class="modal-title text-white" id="exampleModalLabel">Agregar</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-primary">Guardar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 </body>
 
 </html>
