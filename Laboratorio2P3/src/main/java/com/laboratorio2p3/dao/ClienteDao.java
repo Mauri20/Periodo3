@@ -7,6 +7,7 @@ import com.laboratorio2p3.conexion.Conexion;
 import com.laboratorio2p3.entidades.*;
 
 public class ClienteDao {
+	Cliente cl = new Cliente();
 	Conexion cn = new Conexion();
     Connection con = cn.RetornarConexion();
 
@@ -56,18 +57,22 @@ public class ClienteDao {
 
     }
 
-    public void EliminarCliente(Cliente cliente) {
+    public void EliminarCliente(int cliente) {
          try {
-            CallableStatement statement = con.prepareCall("call SP_D_Cliente(?);");
-            statement.setInt("CIdCliente", cliente.getIdCliente());
-            statement.execute();
-            System.out.println("Cliente eliminado correntamente");
+        	 CallableStatement statement = con.prepareCall("delete from cliente where idcliente=" + cliente + ";");
+             if (statement.executeUpdate() >= 1) {
+                 CallableStatement statement2 = con.prepareCall("call SP_D_Cliente(?);");
+                 statement2.setInt("IdCliente", cliente );
             con.close();
-        } catch (Exception e) {
+             }else {
+            	System.out.println("Ocurrio un error eliminando el Cliente!");
+             }
+             } catch (Exception e) {
         	System.out.println("Ocurrio un error al eliminar a cliente" + e);
 
         }
-    }
+         }
+    
 
     public ArrayList<Cliente> MostrarClientes() {
         var listado = new ArrayList<Cliente>();

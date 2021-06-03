@@ -82,8 +82,8 @@ function cargar(Id) {
 						<td class="align-middle"> ${item.Nit} </td>
 						<td class="align-middle"> ${item.Nrc} </td>
 											
-						<td><a href="ControllerShowClientes?Id=${item.IdCliente}&Eliminar=btne" class="btn btn-danger"><i class="fas fa-user-minus"></i>&nbsp; Eliminar </td>
-						<td><a name="usu" href="add.jsp?Id=${item.idUsuario}&Usuario=${item.Usuario}&Pass=${item.PassWord}" class="btn btn-info"><i class="fas fa-user-edit"></i>&nbsp; Actualizar </td>						
+						<td><a href="ControllerShowClientes?Id=${item.IdCliente}&Eliminar=btne" class="btn btn-danger"><i class="fas fa-trash-alt"></i></i>&nbsp; Eliminar </td>
+						<td><a name="usu" href="add.jsp?Id=${item.idUsuario}&Usuario=${item.Usuario}&Pass=${item.PassWord}" class="btn btn-info"><i class="fas fa-pen-square"></i></i>&nbsp; Actualizar </td>						
 					</tr>			
 				`
 				}
@@ -93,15 +93,34 @@ function cargar(Id) {
 				tabla.innerHTML += `
 					<tr>
 						<td colspan="25">
-						<a href="main.jsp" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" id="button-addon2"> <i class="fas fa-user-plus"></i>&nbsp;> Agregar</a>
-					    <a href="main.jsp" class="btn btn-warning" ><i class="fas fa-sign-out-alt"></i>&nbsp;Volver</a>
+						<a href="main.jsp" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" id="button-addon2"> <i class="fas fa-external-link-alt"></i></i>&nbsp; Agregar </a>
+					    <a href="main.jsp" class="btn btn-warning" ><i class="fas fa-home"></i>&nbsp; Menú </a>
 					    </td>
 					</tr>
 				`
 			});
 		});
 	
+	$("#btne").click(function (){
+		swal({
+		  title: "¿Está seguro?",
+		  text: "Una vez eliminado, no podrá recuperar este archivo!",
+		  icon: "warning",
+		  buttons: true,
+		  dangerMode: true,
+		})
+		.then((willDelete) => {
+		  if (willDelete) {
+			swal("El archivo ha sido eliminado!", {
+			  icon: "success",
+			});
+		  } else {
+			swal("Operación cancelada!");
+		  }
+		});	
+	});
 	</script>
+	
 <body>
 	<div class="container">
 		<div class="row">
@@ -141,25 +160,77 @@ function cargar(Id) {
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- Modal Agregar-->
 	<div class="modal fade" id="exampleModal" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-lg modal-dialog-centered">
-			<div class="modal-content bg-dark">
+		<div class="modal-dialog modal-lg modal-dialog-centered modal-dark">
+			<div class="modal-content  bg-muted modalA">
 				<div class="modal-header">
-					<h5 class="modal-title text-white" id="exampleModalLabel">Agregar</h5>
+				
+					<h6 class="modal-title text-black font-weight-bold font-italic Itálica text-success col text-center" id="exampleModalLabel">AGREGAR</h6>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					
+					<form action="" method="">
+					<div class="row">
+					<input type="hidden" name="Id" id="id" value="0" disabled>
+								<div class="col-lg-6 my-1">
+									<label for="Nombre" class="form-label">Nombre:</label>
+									<input required type="text" class="form-control" id="NombreCliente" name="Nombre" placeholder="Ferreteria San Jose">
+								</div>
+								<div class="col-lg-6 my-1">
+									<label for="Tipo" class="form-label">Tipo:</label>
+									<input required type="text" class="form-control" name="Contacto" id="Tipo" placeholder="Juridico">
+								</div>
+								<div class="col-lg-6 my-1">
+									<label for="Contacto" class="form-label">Contacto:</label>
+									<input required type="text" class="form-control" name="Contacto" id="Contacto" placeholder="Juan Perez">
+								</div>
+								
+								<div class="col-lg-6 my-1">
+									<label for="telefono" class="form-label">Tel&eacute;fono:</label>
+									<input required type="text" name="Telefono" class="form-control" id="telefono" placeholder="(503)2352-7823">
+								</div>
+								<div class="col-lg-12 my-1">
+									<label for="Direccion" class="form-label">Direcci&oacute;n:</label>
+									<textarea class="form-control" name="Direccion" id="Direccion" rows="3"></textarea>
+								</div>
+								<div class="col-lg-6 my-1">
+									<label for="Correo" class="form-label">Correo:</label>
+									<input required type="text" name="Correo" class="form-control" id="Correo" placeholder="name@example.com">
+								</div>
+								<div class="col-lg-6 my-1">
+									<label for="Dui" class="form-label">Dui:</label>
+									<input required type="text" name="Dui"  class="form-control" id="Dui" placeholder="12345678-9">
+								</div>
+								<div class="col-lg-6 my-1">
+									<label for="Nit" class="form-label">Nit:</label>
+									<input required type="text" name="Nit"  class="form-control" id="Nit" placeholder="1234-123456-123-1">
+								</div>
+								<div class="col-lg-6 my-1">
+									<label for="Nrc" class="form-label">Nrc:</label>
+									<input required type="text" name="Nrc"  class="form-control" id="Nrc" placeholder="123456-1">
+								</div>
+								
+							<center class="mt-2 odal-footer col text-center">
+								<button onclick="ejecutar()" type="button" class="btn btn-success">
+									<span class="fas fa-badge-check"></span>
+									Guardar
+								</button>
+							</center>	
+					</form>
 				</div>
+    						
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-bs-dismiss="modal">Cancelar</button>
-					<button type="button" class="btn btn-primary">Guardar</button>
+					<button type="button" class="btn btn-danger regular-button"
+						data-bs-dismiss="modal">
+						<span class="fas fa-times"></span>
+						Cancelar
+					</button>
 				</div>
+				
 			</div>
 		</div>
 	</div>

@@ -16,7 +16,7 @@
 	                <form action="ControllerAcceso" method="post" class="box">
 	                    <h1>AgenciaC</h1>
 	                    <p class="text-muted"> Ingresa tus credenciales para Acceder!</p> 
-	                    <input type="text" name="user" autocomplete="false" placeholder="Usuario"> 
+	              		<input type="text" name="user" autocomplete="false" placeholder="Usuario"> 
 	                    <input type="password" name="pass" placeholder="Contrase&ntilde;a"> 
 	                    <input class="form-check-input" type="checkbox" name="tipo" id="ch">
 						<label class="form-check-label text-white" for="ch">&nbsp;&nbsp;&nbsp;Admin</label>

@@ -48,7 +48,7 @@
 							<td colspan="2"><a href="ControllerVentas?action=go" class="btn btn-info"><i class="fas fa-shopping-cart fa-3x m-1"></i><br>Ventas</a></td>
 						</tr>
 						<tr>
-							<td><a href="ControllerUsuarios?action=go" class="btn btn-success"><i class="fas fa-user-shield fa-3x m-1"></i><br>Usuarios</a></td>
+							<td><a href="ControllerUsuarios?action=go" class="btn btn-success"><i class="fas fa-user-circle fa-3x m-1"></i><br>Usuarios</a></td>
 							<td><a href="ControllerEmpleados?action=go" class="btn btn-success"><i class="fas fa-briefcase fa-3x m-1"></i><br>Empleados</a></td>
 							<td><a href="ControllerProveedores?action=go" class="btn btn-success"><i class="fas fa-truck fa-3x m-1"></i><br>Proveedores</a></td>
 							<td><a href="ControllerCompras?action=go" class="btn btn-success"><i class="fas fa-money-check-alt fa-3x m-1"></i><br>Compras</a></td>
