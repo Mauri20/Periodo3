@@ -2,6 +2,7 @@ package com.laboratorio2p3.controladores;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -35,6 +36,7 @@ public class ControllerShowProveedores extends HttpServlet {
 		// TODO Auto-generated method stub
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
 		// ELIMINAR
+		
 		try {
 			String evaluar = request.getParameter("Eliminar");
 
@@ -61,6 +63,20 @@ public class ControllerShowProveedores extends HttpServlet {
 		Gson jsonResultado = new Gson();
 		ProveedorDao provDa = new ProveedorDao();
 		Proveedor prov = new Proveedor();
+		
+		try {
+			String marcas[]=request.getParameterValues("fila");
+			for(int i=0;i<marcas.length;i++) {
+				System.out.println(marcas[i]);
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e);
+		}
+		
+		
+		
 		// Recuperar los datos de la vista y asignandolos dentro del objeto prov
 		String idP = request.getParameter("Id");
 		if (idP == null || idP.equals("0")) {
@@ -72,7 +88,7 @@ public class ControllerShowProveedores extends HttpServlet {
 			prov.setNit(request.getParameter("Nit"));
 			prov.setNrc(request.getParameter("Nrc"));
 			prov.setDireccion(request.getParameter("Direccion"));
-
+			
 			if (prov.getNombre()!=null) {
 				try {
 
