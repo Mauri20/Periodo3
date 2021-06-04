@@ -57,22 +57,21 @@ public class ClienteDao {
 
     }
 
-    public void EliminarCliente(int IdCliente) {
-    	try {
-            CallableStatement statement = con.prepareCall("delete from cliente where idcliente=" + IdCliente + ";");
-            if (statement.executeUpdate() >= 1) {
-                CallableStatement statement2 = con.prepareCall("call SP_D_Cliente(?);");
-                statement2.setInt("CIdCliente", IdCliente);
-                if (statement2.executeUpdate()== 1) {
-                	System.out.println("Cliente eliminado correctamente!");
-                } else {
-                	System.out.println("Ocurrio un error eliminando el Cliente!");
-                }
-            } 
-            } catch (Exception e) {
-        	System.out.println("Error al eliminar " + e);
-            }
+    public void EliminarCliente(int cliente) {
+         try {
+        	 CallableStatement statement = con.prepareCall("delete from cliente where idcliente=" + cliente + ";");
+             if (statement.executeUpdate() >= 1) {
+                 CallableStatement statement2 = con.prepareCall("call SP_D_Cliente(?);");
+                 statement2.setInt("IdCliente", cliente );
+            con.close();
+             }else {
+            	System.out.println("Ocurrio un error eliminando el Cliente!");
+             }
+             } catch (Exception e) {
+        	System.out.println("Ocurrio un error al eliminar a cliente" + e);
+
         }
+         }
     
 
     public ArrayList<Cliente> MostrarClientes() {

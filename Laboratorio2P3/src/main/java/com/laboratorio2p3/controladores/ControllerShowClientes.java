@@ -31,19 +31,33 @@ public class ControllerShowClientes extends HttpServlet {
 		//Eliminar
 		try {
 			String evaluar = request.getParameter("Eliminar");
-
-			ClienteDao clien = new ClienteDao();
-			if (evaluar != null) {
-				if (evaluar.equals("btne")) {
-					int idclien = Integer.parseInt(request.getParameter("IdCliente"));
-					clien.EliminarCliente(idclien);
+			ClienteDao ClDao = new ClienteDao();
+			Cliente Cl = new Cliente();
+			
+			
+			if (evaluar != null) 
+			{
+				
+				if (evaluar.equals("btne")) 
+				{
+					
+					int idclien = Integer.parseInt(request.getParameter("idcliente"));
+	                Cl.setIdCliente(Integer.parseInt(request.getParameter("Cl")));
+					ClDao.EliminarCliente(idclien);
 					response.sendRedirect("crudClientes.jsp");
-				} else {
+					
+					
+				} else 
+				{
 					System.out.println("No viene BTNE");
 				}
-			} else {
+				
+			} else 
+			{
 				System.out.println("No viene Eliminar");
 			}
+			
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println("error 1= " + e);
