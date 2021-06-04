@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 import com.google.gson.Gson;
 import com.laboratorio2p3.dao.ClienteDao;
 import com.laboratorio2p3.dao.EmpleadoDao;
+import com.laboratorio2p3.dao.ProveedorDao;
 import com.laboratorio2p3.dao.UsuarioDao;
 import com.laboratorio2p3.entidades.Cliente;
 
@@ -36,14 +37,23 @@ public class ControllerClientes extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		ClienteDao cliente = new ClienteDao();
-		Gson json = new Gson();
-		response.setCharacterEncoding("UTF8");
-		response.getWriter().append(json.toJson(cliente.MostrarClientes()));
+		String evaluar = request.getParameter("action");
+
+		if (evaluar != null) {
+
+			if (evaluar.equals("go")) {
+
+				response.sendRedirect("crudClientes.jsp");
+
+			} else {
+				System.out.println("Error1 go");
+				response.sendRedirect("main.jsp");
+			}
+		} else {
+			System.out.println("Error2");
+			response.sendRedirect("main.jsp");
+		}
 		
-		for(var iterar : cliente.MostrarClientes()) {
-			System.out.println(iterar.getNombre());
-	    }
 	}
 
 	/**
@@ -51,11 +61,20 @@ public class ControllerClientes extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		//doGet(request, response);
+		
 		
 		
 	}
 	
-	
+	//<td class="align-middle"> ${item.Nombre} </td>
+	//<td class="align-middle"> ${item.Tipo} </td>
+	//<td class="align-middle"> ${item.Contacto} </td>
+	//<td class="align-middle"> ${item.Telefono} </td>
+	//<td class="align-middle"> ${item.Direccion} </td>
+	//<td class="align-middle"> ${item.Correo} </td>
+	//<td class="align-middle"> ${item.Dui} </td>
+	//<td class="align-middle"> ${item.Nit} </td>
+	//<td class="align-middle"> ${item.Nrc} </td>
 	
 }

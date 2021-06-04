@@ -1,7 +1,7 @@
 package com.laboratorio2p3.entidades;
 
 public class Cliente {
-	private int IdCliente;
+	public int IdCliente;
     private String Nombre;
     private String Tipo;
     private String Contacto;
