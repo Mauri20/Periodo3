@@ -51,9 +51,6 @@ function cargar(Id) {
 		
 	});
 }
-
-
-
 	$(document).ready(function (){
 		
 			$.post('ControllerShowClientes',{
