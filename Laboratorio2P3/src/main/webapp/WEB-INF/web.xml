@@ -104,8 +104,5 @@
   	<servlet-name>ControllerPruebas</servlet-name>
   	<url-pattern>/ControllerPruebas</url-pattern>
   </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>ControllerShowClientes</servlet-name>
-  	<url-pattern>/ControllerShowClientes</url-pattern>
-  </servlet-mapping>
+  
 </web-app>
