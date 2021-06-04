@@ -94,7 +94,6 @@ function llenarMarcas() {
 		}
 	});
 }
-
 function ejecutar() {
 	var texto=document.getElementById('texto');
 	if(document.getElementById('tablaMarcas').rows.length>1){
@@ -106,8 +105,10 @@ function ejecutar() {
 		let Nit=$('#nit').val()
 		let Nrc=$('#nrc').val()
 		let Direccion=$('#direc').val()
+
 		$.get('ControllerShowProveedores',{
 		//Esta seccion es para enviar peticiones al servidor
+			
 			Id, Nombre, Contacto, Telefono, Email, Nit, Nrc, Direccion
 
 		}, function (response){
@@ -122,6 +123,24 @@ function ejecutar() {
 			texto.innerHTML="Debe agregar Marcas para el Proveedor!";
 		}
 	}
+}
+function recorrerTabla(){
+	let marc;
+	let tab=document.getElementById('tablaMarcas');
+	
+	for (var i = 1, row; row = tab.rows[i]; i++) {
+	//alert(cell[i].innerText);
+		marc=row.cells[0].innerText;
+		console.log(marc);
+		$.get('ControllerShowProveedores',{
+		//Esta seccion es para enviar peticiones al servidor
+			marc
+		}, function (response){
+			//Esta seccion es para recibir informacion
+			
+		});
+	}
+	
 }
 function loadProv(){
 	$.post('ControllerShowProveedores',{
@@ -181,17 +200,33 @@ function addRow(){
 	let tabla=document.getElementById('tablaMarcas');
 	tabla.innerHTML+=`
 		<tr id="row${valor}">
-			<td class="align-middle">${valor}</td>
-			<td class="align-middle">${texto}</td>
+			<td class="align-middle id">${valor}</td>
+			<input type="hidden" name="marcaId" id="marcaId" value="${valor}">
+			<td class="align-middle nombreMarca">${texto}</td>
 			<td class="align-middle"><button onclick="removeRow('row${valor}')" type="button" class="btn btn-danger"><i class="fas fa-minus-square"></i></button></td>
 		</tr>
 	`
 }
-function filas(){
-	alert(document.getElementById('tablaMarcas').rows.length)
-}
 function removeRow(id){
 	$('#'+id).remove();
+}
+function arregloTabla(){
+	let marcas = [];
+	document.querySelectorAll('.tabla-arreglo tbody tr').forEach(function(e){
+	let fila = {
+		id: e.querySelector('.id').innerText
+	};
+		$.get('ControllerPrueba',{
+		//Esta seccion es para enviar peticiones al servidor
+			fila
+		}, function (response){
+			//Esta seccion es para recibir informacion
+			
+		});
+
+	marcas.push(fila);
+	});
+	console.log(marcas);
 }
 </script>
 <body>
@@ -279,7 +314,7 @@ function removeRow(id){
 								<div class="col-12 my-3 ">
 									<div class="row justify-content-center">
 										<div class="col-6">
-											<table id="tablaMarcas" class=" table table-sm table-striped table-hover text-center table-bordered table-success">
+											<table id="tablaMarcas" class="tabla-arreglo table table-sm table-striped table-hover text-center table-bordered table-success">
 												<thead class="bg-primary">
 													<tr>
 														<th>Id</th>
@@ -312,7 +347,7 @@ function removeRow(id){
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" onclick="filas()">Filas</button>
+					<button type="button" onclick="arregloTabla()">Filas</button>
 					<button type="button" class="btn btn-danger" data-bs-dismiss="modal">
 						<span class="fas fa-sign-out-alt"></span>
 						Close
