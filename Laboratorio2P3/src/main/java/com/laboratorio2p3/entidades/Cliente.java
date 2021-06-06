@@ -16,60 +16,60 @@ public class Cliente {
 		return IdCliente;
 	}
 	public void setIdCliente(int idCliente) {
-		IdCliente = idCliente;
+		this.IdCliente = idCliente;
 	}
 	public String getNombre() {
 		return Nombre;
 	}
 	public void setNombre(String nombre) {
-		Nombre = nombre;
+		this.Nombre = nombre;
 	}
 	public String getTipo() {
 		return Tipo;
 	}
 	public void setTipo(String tipo) {
-		Tipo = tipo;
+		this.Tipo = tipo;
 	}
 	public String getContacto() {
 		return Contacto;
 	}
 	public void setContacto(String contacto) {
-		Contacto = contacto;
+		this.Contacto = contacto;
 	}
 	public String getTelefono() {
 		return Telefono;
 	}
 	public void setTelefono(String telefono) {
-		Telefono = telefono;
+		this.Telefono = telefono;
 	}
 	public String getDireccion() {
 		return Direccion;
 	}
 	public void setDireccion(String direccion) {
-		Direccion = direccion;
+		this.Direccion = direccion;
 	}
 	public String getCorreo() {
 		return Correo;
 	}
 	public void setCorreo(String correo) {
-		Correo = correo;
+		this.Correo = correo;
 	}
 	public String getDui() {
 		return Dui;
 	}
 	public void setDui(String dui) {
-		Dui = dui;
+		this.Dui = dui;
 	}
 	public String getNit() {
 		return Nit;
 	}
 	public void setNit(String nit) {
-		Nit = nit;
+		this.Nit = nit;
 	}
 	public String getNrc() {
 		return Nrc;
 	}
 	public void setNrc(String nrc) {
-		Nrc = nrc;
+		this.Nrc = nrc;
 	}
 }

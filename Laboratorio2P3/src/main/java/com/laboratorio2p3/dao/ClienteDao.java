@@ -4,10 +4,10 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import com.laboratorio2p3.conexion.Conexion;
-import com.laboratorio2p3.entidades.*;
+import com.laboratorio2p3.entidades.Cliente;
 
 public class ClienteDao {
-	Cliente cl = new Cliente();
+
 	Conexion cn = new Conexion();
     Connection con = cn.RetornarConexion();
 
@@ -28,7 +28,7 @@ public class ClienteDao {
             con.close();
             System.out.println("Cliente Guardado Correctamente");
         } catch (Exception e) {
-        	System.out.println("Error al guardar a cliente");
+        	System.out.println("Error al guardar a cliente" + e);
 
         }
 
@@ -37,8 +37,8 @@ public class ClienteDao {
     public void ActualizarCliente(Cliente cliente) {
         try {
             CallableStatement statement = con.prepareCall("call SP_U_Cliente(?,?,?,?,?,?,?,?,?,?)");
+            statement.setInt("CidCliente", cliente.getIdCliente());
             statement.setString("CNombre", cliente.getNombre());
-            statement.setInt("CIdCliente", cliente.getIdCliente());
             statement.setString("CTipo", cliente.getTipo());
             statement.setString("CContacto", cliente.getContacto());
             statement.setString("CTelefono", cliente.getTelefono());
@@ -51,28 +51,25 @@ public class ClienteDao {
             con.close();
             System.out.println("Cliente Actualizado Correctamente");
         } catch (Exception e) {
-        	System.out.println("Error al Actualizar a Cliente");
+        	System.out.println("Error al Actualizar a Cliente" + e);
 
         }
 
     }
 
-    public void EliminarCliente(int cliente) {
-         try {
-        	 CallableStatement statement = con.prepareCall("delete from cliente where idcliente=" + cliente + ";");
-             if (statement.executeUpdate() >= 1) {
-                 CallableStatement statement2 = con.prepareCall("call SP_D_Cliente(?);");
-                 statement2.setInt("IdCliente", cliente );
+    public void EliminarCliente(Cliente cliente) {
+    	try {
+            CallableStatement statement = con.prepareCall("call SP_D_Cliente(?);");
+            statement.setInt("CIdCliente", cliente.getIdCliente());
+            statement.execute();
+                     
+            System.out.println("El Cliente ha sido eliminado exitosamente");
             con.close();
-             }else {
-            	System.out.println("Ocurrio un error eliminando el Cliente!");
-             }
-             } catch (Exception e) {
-        	System.out.println("Ocurrio un error al eliminar a cliente" + e);
+        } catch (Exception e) {
+        	System.out.println("UPS! algo ha ido mal al intentar eliminar (verifique)" + e);
 
         }
-         }
-    
+    }
 
     public ArrayList<Cliente> MostrarClientes() {
         var listado = new ArrayList<Cliente>();
