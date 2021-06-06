@@ -31,7 +31,7 @@ public class ControllerShowClientes extends HttpServlet {
 		//super.doGet(req, resp);
 		
 		String IdCliente = request.getParameter("Id");
-		String Nombre = request.getParameter("Cliente");
+		String Nombre = request.getParameter("Nombre");
 		String Tipo = request.getParameter("Tipo");
 		String Contacto = request.getParameter("Contacto");
 		String Telefono = request.getParameter("Telefono");
@@ -40,7 +40,7 @@ public class ControllerShowClientes extends HttpServlet {
 		String Dui = request.getParameter("Dui");
 		String Nit = request.getParameter("Nit");
 		String Nrc = request.getParameter("Nrc");
-
+ System.out.println(request.getParameter("Guardar"));
 
 			String evaluar = request.getParameter("Eliminar");
 			String agregar = request.getParameter("Guardar");
@@ -60,7 +60,7 @@ public class ControllerShowClientes extends HttpServlet {
 			}
 			
 			if (agregar != null) {
-				if (agregar.equals("btna")) {
+				if (agregar.equals("GUARDAR")) {
 					Cl.setNombre(Nombre);
 					Cl.setTipo(Tipo);
 					Cl.setContacto(Contacto);
@@ -72,7 +72,7 @@ public class ControllerShowClientes extends HttpServlet {
 					Cl.setNrc(Nrc);
 					System.out.println(IdCliente);
 					ClDao.AgregarCliente(Cl);
-;
+					
 					response.sendRedirect("crudClientes.jsp");
 					
 					

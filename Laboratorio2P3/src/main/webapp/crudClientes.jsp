@@ -203,7 +203,8 @@ function cargar(Id) {
 						aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<form action="ControllerShowClientes.java" method="get">
+					<form action="ControllerShowClientes" method="get">
+					
 					<div class="row">
 					<input type="hidden" name="Id" id="id" value=<%=IdCliente%> disabled>
 								<div class="col-lg-6 my-1">
@@ -212,7 +213,7 @@ function cargar(Id) {
 								</div>
 								<div class="col-lg-6 my-1">
 									<label for="Tipo" class="form-label">Tipo:</label>
-									<input type="text" class="form-control" name="Contacto" id="Tipo"  value=<%=Tipo%>>
+									<input type="text" class="form-control" name="Tipo" id="Tipo"  value=<%=Tipo%>>
 								</div>
 								<div class="col-lg-6 my-1">
 									<label for="Contacto" class="form-label">Contacto:</label>
@@ -245,10 +246,8 @@ function cargar(Id) {
 								</div>
 								
 							<center class="mt-2 odal-footer col text-center">
-								<button name="Guardar"  value="btna" type="button" class="btn btn-success">
-									<span class="fas fa-badge-check" value="btna" ></span>
-									Guardar
-								</button>
+							
+							<input type="submit"  name="Guardar"  value="GUARDAR" class="btn btn-success">
 							</center>	
 					</form>
 				</div>
