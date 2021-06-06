@@ -37,7 +37,7 @@ public class ClienteDao {
     public void ActualizarCliente(Cliente cliente) {
         try {
             CallableStatement statement = con.prepareCall("call SP_U_Cliente(?,?,?,?,?,?,?,?,?,?)");
-            statement.setInt("CidCliente", cliente.getIdCliente());
+            statement.setInt("CIdCliente", cliente.getIdCliente());
             statement.setString("CNombre", cliente.getNombre());
             statement.setString("CTipo", cliente.getTipo());
             statement.setString("CContacto", cliente.getContacto());

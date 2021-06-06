@@ -35,7 +35,7 @@
 
 
 </head>
-</head>
+
 
 <%
 	String IdCliente = request.getParameter("IdCliente");
@@ -110,7 +110,7 @@ function cargar(Id) {
 						<td class="align-middle"> ${item.Nrc} </td>
 											
 						<td><a href="ControllerShowClientes?Id=${item.IdCliente}&Eliminar=btne" class="btn btn-danger"><i class="fas fa-trash-alt"></i></i>&nbsp; Eliminar </td>
-						<td><a name="usu" href="add.jsp?Id=${item.idUsuario}&Usuario=${item.Usuario}&Pass=${item.PassWord}" class="btn btn-info"><i class="fas fa-pen-square"></i></i>&nbsp; Actualizar </td>						
+						<td><a name="" href="ClienteUpdate.jsp?Id=${item.idUsuario}&Usuario=${item.Usuario}&Pass=${item.PassWord}" class="btn btn-info"><i class="fas fa-pen-square"></i></i>&nbsp; Actualizar </td>						
 					</tr>		
 					
 					
@@ -203,7 +203,7 @@ function cargar(Id) {
 						aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<form action="ControllerShowClientes" method="">
+					<form action="ControllerShowClientes.java" method="get">
 					<div class="row">
 					<input type="hidden" name="Id" id="id" value=<%=IdCliente%> disabled>
 								<div class="col-lg-6 my-1">
@@ -245,7 +245,7 @@ function cargar(Id) {
 								</div>
 								
 							<center class="mt-2 odal-footer col text-center">
-								<button type="button" class="btn btn-success">
+								<button name="Guardar"  value="btna" type="button" class="btn btn-success">
 									<span class="fas fa-badge-check" value="btna" ></span>
 									Guardar
 								</button>

@@ -15,6 +15,7 @@ import com.laboratorio2p3.entidades.Cliente;
 import com.laboratorio2p3.entidades.Proveedor;
 
 
+
 public class ControllerShowClientes extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -39,7 +40,7 @@ public class ControllerShowClientes extends HttpServlet {
 		String Dui = request.getParameter("Dui");
 		String Nit = request.getParameter("Nit");
 		String Nrc = request.getParameter("Nrc");
-		          //Eliminar
+
 
 			String evaluar = request.getParameter("Eliminar");
 			String agregar = request.getParameter("Guardar");
@@ -58,10 +59,8 @@ public class ControllerShowClientes extends HttpServlet {
 				
 			}
 			
-			
-			if (evaluar != null) {
-				if (evaluar.equals("btna")) {
-					
+			if (agregar != null) {
+				if (agregar.equals("btna")) {
 					Cl.setNombre(Nombre);
 					Cl.setTipo(Tipo);
 					Cl.setContacto(Contacto);
@@ -76,49 +75,30 @@ public class ControllerShowClientes extends HttpServlet {
 ;
 					response.sendRedirect("crudClientes.jsp");
 					
-			} else {
-				System.out.println("ERROR AL INGRESAR CLIENTE");
-				
-			}
+					
+				} else 
+				{
+					System.out.println("ERROR AL INGRESAR CLIENTE");
 				}
+			}
+		}
+			
+				
 			
 			
 		
 		
-}
+
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//super.doPost(req, resp);
-		ClienteDao cliendao = new ClienteDao();
 		Gson json = new Gson();
-
-		var cliente = cliendao.MostrarClientes();
-		ArrayList<Cliente> listado = new ArrayList<Cliente>();
-		if (cliente != null) {
-			for (var iterar : cliente) {
-				Cliente clie = new Cliente();
-				clie.setIdCliente(iterar.getIdCliente());
-				clie.setNombre(iterar.getNombre());
-				clie.setTipo(iterar.getTipo());
-				clie.setContacto(iterar.getContacto());
-				clie.setTelefono(iterar.getTelefono());
-				clie.setDireccion(iterar.getDireccion());
-				clie.setCorreo(iterar.getCorreo());
-				clie.setDui(iterar.getDui());
-				clie.setNit(iterar.getNit());
-				clie.setNrc(iterar.getNrc());
-
-				listado.add(clie);
-			}
-			response.setCharacterEncoding("UTF8");
-			response.getWriter().append(json.toJson(listado));
-		} else {
-			System.out.println("Clientes Null");
-			response.sendRedirect("crudClientes.jsp");
-		}
-
+		ClienteDao cliendao = new ClienteDao();
+		
+		response.setCharacterEncoding("UTF8");
+		response.getWriter().append(json.toJson(cliendao.MostrarClientes()));
 	}
 	
 }
