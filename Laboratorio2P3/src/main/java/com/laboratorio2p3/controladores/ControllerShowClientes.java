@@ -15,6 +15,7 @@ import com.laboratorio2p3.entidades.Cliente;
 import com.laboratorio2p3.entidades.Proveedor;
 
 
+
 public class ControllerShowClientes extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -28,115 +29,76 @@ public class ControllerShowClientes extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//super.doGet(req, resp);
-		//Eliminar
-		try {
+		
+		String IdCliente = request.getParameter("Id");
+		String Nombre = request.getParameter("Nombre");
+		String Tipo = request.getParameter("Tipo");
+		String Contacto = request.getParameter("Contacto");
+		String Telefono = request.getParameter("Telefono");
+		String Direccion = request.getParameter("Direccion");
+		String Correo = request.getParameter("Correo");
+		String Dui = request.getParameter("Dui");
+		String Nit = request.getParameter("Nit");
+		String Nrc = request.getParameter("Nrc");
+ System.out.println(request.getParameter("Guardar"));
+
 			String evaluar = request.getParameter("Eliminar");
+			String agregar = request.getParameter("Guardar");
 			ClienteDao ClDao = new ClienteDao();
 			Cliente Cl = new Cliente();
 			
 			
-			if (evaluar != null) 
-			{
+			if (evaluar != null) {
+				if (evaluar.equals("btne")) {
+					Cl.setIdCliente(Integer.parseInt(IdCliente));
+					ClDao.EliminarCliente(Cl);
+					response.sendRedirect("crudClientes.jsp");
+				}
+			} else {
+				System.out.println("ERROR");
 				
-				if (evaluar.equals("btne")) 
-				{
+			}
+			
+			if (agregar != null) {
+				if (agregar.equals("GUARDAR")) {
+					Cl.setNombre(Nombre);
+					Cl.setTipo(Tipo);
+					Cl.setContacto(Contacto);
+					Cl.setTelefono(Telefono);
+					Cl.setDireccion(Direccion);
+					Cl.setCorreo(Correo);
+					Cl.setDui(Dui);
+					Cl.setNit(Nit);
+					Cl.setNrc(Nrc);
+					System.out.println(IdCliente);
+					ClDao.AgregarCliente(Cl);
 					
-					int idclien = Integer.parseInt(request.getParameter("idcliente"));
-	                Cl.setIdCliente(Integer.parseInt(request.getParameter("Cl")));
-					ClDao.EliminarCliente(idclien);
 					response.sendRedirect("crudClientes.jsp");
 					
 					
 				} else 
 				{
-					System.out.println("No viene BTNE");
+					System.out.println("ERROR AL INGRESAR CLIENTE");
 				}
+			}
+		}
+			
 				
-			} else 
-			{
-				System.out.println("No viene Eliminar");
-			}
 			
 			
-		} catch (Exception e) {
-			// TODO: handle exception
-			System.out.println("error 1= " + e);
-		}
-		// GUARDAR/ACTUALIZAR
-
-		// Variable que llevara el resultado
-		String resultado = "";
 		
-		Gson jsonResultado = new Gson();
-		ClienteDao provDa = new ClienteDao();
-		Cliente client = new Cliente();
 		
-		// Recuperar los datos de la vista y asignandolos dentro del objeto prov
-		String ipC = request.getParameter("IdCliente");
-		
-		if (ipC == null || ipC.equals("0")) {
-			client.setIdCliente(Integer.parseInt(ipC));
-            client.setNombre(request.getParameter("Nombre"));
-            client.setTipo(request.getParameter("Tipo"));
-            client.setContacto(request.getParameter("Contacto"));
-            client.setTelefono(request.getParameter("Telefono"));
-            client.setDireccion(request.getParameter("Direccion"));
-            client.setCorreo(request.getParameter("Correo"));
-            client.setDui(request.getParameter("Dui"));
-            client.setNit(request.getParameter("Nit"));
-            client.setNrc(request.getParameter("Nrc"));
 
-			if (client.getNombre()!=null) {
-				try {
-
-					response.getWriter().append(jsonResultado.toJson(client));
-
-				} catch (Exception e) {
-					// TODO: handle exception
-					resultado = "Error al registrar " + e;
-					response.getWriter().append(jsonResultado.toJson(resultado));
-				}
-			} else {
-				System.out.println("Error al guardar!");
-			}
-		} else {
-			System.out.println("Id trae datos"+ipC);
-		}
-
-	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//super.doPost(req, resp);
-		ClienteDao cliendao = new ClienteDao();
 		Gson json = new Gson();
-
-		var cliente = cliendao.MostrarClientes();
-		ArrayList<Cliente> listado = new ArrayList<Cliente>();
-		if (cliente != null) {
-			for (var iterar : cliente) {
-				Cliente clie = new Cliente();
-				clie.setIdCliente(iterar.getIdCliente());
-				clie.setNombre(iterar.getNombre());
-				clie.setTipo(iterar.getTipo());
-				clie.setContacto(iterar.getContacto());
-				clie.setTelefono(iterar.getTelefono());
-				clie.setDireccion(iterar.getDireccion());
-				clie.setCorreo(iterar.getCorreo());
-				clie.setDui(iterar.getDui());
-				clie.setNit(iterar.getNit());
-				clie.setNrc(iterar.getNrc());
-
-				listado.add(clie);
-			}
-			response.setCharacterEncoding("UTF8");
-			response.getWriter().append(json.toJson(listado));
-		} else {
-			System.out.println("Clientes Null");
-			response.sendRedirect("crudClientes.jsp");
-		}
-
+		ClienteDao cliendao = new ClienteDao();
+		
+		response.setCharacterEncoding("UTF8");
+		response.getWriter().append(json.toJson(cliendao.MostrarClientes()));
 	}
 	
 }
