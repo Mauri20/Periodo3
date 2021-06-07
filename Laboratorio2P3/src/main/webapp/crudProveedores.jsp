@@ -97,6 +97,9 @@ function llenarMarcas() {
 function ejecutar() {
 	var texto=document.getElementById('texto');
 	if(document.getElementById('tablaMarcas').rows.length>1){
+		
+		arregloTabla();
+
 		let Id=$('#id').val()
 		let Nombre=$('#nombreProv').val()
 		let Contacto=$('#contact').val()
@@ -105,7 +108,7 @@ function ejecutar() {
 		let Nit=$('#nit').val()
 		let Nrc=$('#nrc').val()
 		let Direccion=$('#direc').val()
-
+		
 		$.get('ControllerShowProveedores',{
 		//Esta seccion es para enviar peticiones al servidor
 			
@@ -211,22 +214,24 @@ function removeRow(id){
 	$('#'+id).remove();
 }
 function arregloTabla(){
+	
 	let marcas = [];
+
 	document.querySelectorAll('.tabla-arreglo tbody tr').forEach(function(e){
 	let fila = {
 		id: e.querySelector('.id').innerText
 	};
-		$.get('ControllerPrueba',{
-		//Esta seccion es para enviar peticiones al servidor
-			fila
-		}, function (response){
-			//Esta seccion es para recibir informacion
-			
-		});
-
 	marcas.push(fila);
 	});
+
 	console.log(marcas);
+	$.get('ControllerPruebas',{
+	//Esta seccion es para enviar peticiones al servidor
+		marcas
+	}, function (response){
+		//Esta seccion es para recibir informacion
+		
+	});
 }
 </script>
 <body>

@@ -8,9 +8,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.laboratorio2p3.dao.ProveedorDao;
+import com.laboratorio2p3.entidades.Marca;
 import com.laboratorio2p3.entidades.Proveedor;
 
 /**
@@ -64,18 +66,7 @@ public class ControllerShowProveedores extends HttpServlet {
 		ProveedorDao provDa = new ProveedorDao();
 		Proveedor prov = new Proveedor();
 		
-		try {
-			String marcas[]=request.getParameterValues("fila");
-			for(int i=0;i<marcas.length;i++) {
-				System.out.println(marcas[i]);
-			}
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			System.out.println(e);
-		}
-		
-		
+		HttpSession sesion = request.getSession(true);
 		
 		// Recuperar los datos de la vista y asignandolos dentro del objeto prov
 		String idP = request.getParameter("Id");
@@ -88,6 +79,18 @@ public class ControllerShowProveedores extends HttpServlet {
 			prov.setNit(request.getParameter("Nit"));
 			prov.setNrc(request.getParameter("Nrc"));
 			prov.setDireccion(request.getParameter("Direccion"));
+			
+			try {
+				
+				Object marc= sesion.getAttribute("listadoMarcas");
+				ArrayList<Marca> lista=(ArrayList<Marca>)marc;
+				
+				
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+				System.out.println(e);
+			}
 			
 			if (prov.getNombre()!=null) {
 				try {
