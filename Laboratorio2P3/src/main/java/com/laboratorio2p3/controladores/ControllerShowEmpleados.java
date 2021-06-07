@@ -33,40 +33,41 @@ public class ControllerShowEmpleados extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
+		String evaluar = request.getParameter("Eliminar");
+		String evaluar2 = request.getParameter("Guardar");
 		
-		// OPCION ELIMINAR (TIENE ERRORES)
-		try {
-			String evaluar = request.getParameter("Eliminar");
-			EmpleadoDao EmpleDao = new EmpleadoDao();
-			Empleado emple = new Empleado();
-			
-			
-			if (evaluar != null) 
+		EmpleadoDao EmpleDao = new EmpleadoDao();
+		Empleado emple = new Empleado();
+		
+		String IdEmpeado = request.getParameter("Id");
+		String Nombre = request.getParameter("Nombre");
+		String Apellido = request.getParameter("Apellido");
+		String Sexo = request.getParameter("Sexo");
+		String Direccion = request.getParameter("Direccion");
+		String Telefono = request.getParameter("Telefono");
+		String Dui = request.getParameter("Dui");
+		String Nit = request.getParameter("Nit");
+		String Cargo = request.getParameter("Cargo");
+		String Departamento = request.getParameter("Departamento");
+		
+		
+		
+		
+		// OPCION ELIMINAR 
+		if (evaluar != null) 
+		{
+			if (evaluar.equals("btne"))
 			{
 				
-				if (evaluar.equals("btne")) 
-				{
-					
-					int idEmple = Integer.parseInt(request.getParameter("Id"));
-	                //emple.setIdEmpleado(Integer.parseInt(request.getParameter("emple")));
-					//EmpleDao.EliminarEmpleado(idEmple);
-					response.sendRedirect("crudEmpleados.jsp");
-					
-					
-				} else 
-				{
-					System.out.println("No viene BTNE");
-				}
+				emple.setIdEmpleado(Integer.parseInt(IdEmpeado));
+				EmpleDao.EliminarEmpleado(emple);
+				response.sendRedirect("crudEmpleados.jsp");
 				
-			} else 
-			{
-				System.out.println("No viene Eliminar");
+				
 			}
-			
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			System.out.println("error 1= " + e);
+		}else 
+		{
+			System.out.println("ERROR");
 		}
 		
 		
@@ -74,7 +75,63 @@ public class ControllerShowEmpleados extends HttpServlet {
 		
 		
 		
+		//GUARDAR
+		if (evaluar2 != null) 
+		{
+			if (evaluar2.equals("GUARDAR")) 
+			{
+				emple.setNombre(Nombre);
+				emple.setApellido(Apellido);
+				emple.setSexo(Sexo);
+				emple.setDireccion(Direccion);
+				emple.setTelefono(Telefono);
+				emple.setDui(Dui);
+				emple.setNit(Nit);
+				emple.setCargo(Cargo);
+				emple.setDepartamento(Departamento);
+				
+				
+				System.out.println(IdEmpeado);
+				EmpleDao.AgregarEmpleado(emple);
+			    response.sendRedirect("crudEmpleados.jsp");
+				
+			}else 
+			{
+				System.out.println("ERROR AL INGRESAR EMPLEADO");
+			}
+		}
 		
+		
+		
+		
+		
+		//ACTUALIZAR
+		if (evaluar2 != null ) 
+		{
+			if (evaluar2.equals("Actualizar")) 
+			{
+				emple.setNombre(Nombre);
+				emple.setApellido(Apellido);
+				emple.setSexo(Sexo);
+				emple.setDireccion(Direccion);
+				emple.setTelefono(Telefono);
+				emple.setDui(Dui);
+				emple.setNit(Nit);
+				emple.setCargo(Cargo);
+				emple.setDepartamento(Departamento);
+				
+				emple.setIdEmpleado(Integer.parseInt(IdEmpeado));
+				EmpleDao.ActualizarEmpleado(emple);
+				
+				response.sendRedirect("crudEmpleados.jsp");
+				System.out.println(IdEmpeado);
+				
+			}else 
+			{
+				System.out.println("ERROR AL ACTUALIZAR EMPLEADO");
+			}
+			
+		}
 		
 		
 		
@@ -93,32 +150,13 @@ public class ControllerShowEmpleados extends HttpServlet {
 		// TODO Auto-generated method stub
 		// doGet(request, response);
 
-		
-		
-		
-		
-		EmpleadoDao empledao = new EmpleadoDao();
 		Gson json = new Gson();
+		EmpleadoDao empleadodao = new EmpleadoDao();
+		
+		response.setCharacterEncoding("UTF8");
+		response.getWriter().append(json.toJson(empleadodao.MostrarEmpleados()));
+		
 
-		var empleadooos = empledao.MostrarEmpleados();
-
-		if (empleadooos != null) {
-			for (var iterar : empleadooos) {
-				System.out.println(iterar.getNombre());
-			}
-			response.setCharacterEncoding("UTF8");
-			response.getWriter().append(json.toJson(empleadooos));
-		} else {
-			System.out.println("Empleados null");
-			response.sendRedirect("crudEmpleados.jsp");
-		}
-
-		
-		
-		
-		
-		
-		
 	}
 
 }

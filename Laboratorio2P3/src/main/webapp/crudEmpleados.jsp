@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	
+<%@ page import="com.laboratorio2p3.entidades.Login" %>	
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,7 +37,50 @@
 
 
 </head>
+
+<%
+String IdEmpeado = request.getParameter("idEmpleado");
+String Nombre = request.getParameter("Nombre");
+String Apellido = request.getParameter("Apellido");
+String Sexo = request.getParameter("Sexo");
+String Direccion = request.getParameter("Direccion");
+String Telefono = request.getParameter("Telefono");
+String Dui = request.getParameter("Dui");
+String Nit = request.getParameter("Nit");
+String Cargo = request.getParameter("Cargo");
+String Departamento = request.getParameter("Departamento");
+
+if (IdEmpeado == null) {
+	IdEmpeado = "";
+	Nombre = "";
+	Apellido = "";
+	Sexo = "";
+	Direccion = "";
+	Telefono = "";
+	Dui = "";
+	Nit = "";
+	Cargo = "";
+	Departamento = "";
+
+}
+%>
+
+
+
 <script type="text/javascript">
+function cargar(Id) {
+	$.post('ControllerEmpleados',{
+		//Esta seccion es para enviar peticiones al servidor
+		Id
+	}, function (response){
+		//Esta seccion es para recibir informacion
+		let datos = JSON.parse(response);
+		console.log(datos);
+		
+		
+	});
+}
+
 
 
 
@@ -64,9 +110,11 @@
 						<td class="align-middle"> ${item.Departamento} </td>
 											
 						<td><a href="ControllerShowEmpleados?Id=${item.idEmpleado}&Eliminar=btne" class="btn btn-danger"><i class="fas fa-user-minus"></i>&nbsp; Eliminar </td>
-						<td><a name="usu" href="add.jsp?Id=${item.idUsuario}&Usuario=${item.Usuario}&Pass=${item.PassWord}" class="btn btn-info"><i class="fas fa-user-edit"></i>&nbsp;Actualizar </td>						
+						<td><a href="add.jsp?Id=${item.idUsuario}&Empleado=${item.Nombre}&Pass=${item.PassWord}" class="btn btn-info"><i class="fas fa-user-edit"></i>&nbsp;Actualizar </td>						
 					</tr>			
 				`
+						console.log(item.idEmpleado);
+				
 				}
 					
 					

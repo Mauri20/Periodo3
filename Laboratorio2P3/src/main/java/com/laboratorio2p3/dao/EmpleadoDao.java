@@ -31,7 +31,32 @@ public class EmpleadoDao {
             con.close();
             System.out.println("El Empleado ha sido guardado exitosamente");
         } catch (Exception e) {
-        	System.out.println("UPS! algo ha ido mal al intentar guardar (verifique)");
+        	System.out.println("UPS! algo ha ido mal al intentar guardar (verifique)" + e);
+
+        }
+
+    }
+    
+    
+    public void ActualizarEmpleado(Empleado empleado) {
+        try {
+            CallableStatement statement = con.prepareCall("call sp_u_Empleado(?,?,?,?,?,?,?,?,?,?)");
+            statement.setInt("pId", empleado.getIdEmpleado());
+            statement.setString("pNombre", empleado.getNombre());
+            statement.setString("pApellido", empleado.getApellido());
+            statement.setString("pSexo", empleado.getSexo());
+            statement.setString("pDireccion", empleado.getDireccion());
+            statement.setString("pTelefono", empleado.getTelefono());
+            statement.setString("pDui", empleado.getDui());
+            statement.setString("pNit", empleado.getNit());
+            statement.setString("pCargo", empleado.getCargo());
+            statement.setString("pDepartamento", empleado.getDepartamento());
+            statement.execute();
+            
+            con.close();
+            System.out.println("El Empleado ha sido actualizado exitosamente");
+        } catch (Exception e) {
+        	System.out.println("UPS! algo ha ido mal al intentar actualizado (verifique)" + e);
 
         }
 
