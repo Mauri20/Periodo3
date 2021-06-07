@@ -39,7 +39,7 @@ public class ControllerShowEmpleados extends HttpServlet {
 		EmpleadoDao EmpleDao = new EmpleadoDao();
 		Empleado emple = new Empleado();
 		
-		String IdEmpeado = request.getParameter("Id");
+		String IdEmpleado = request.getParameter("Id");
 		String Nombre = request.getParameter("Nombre");
 		String Apellido = request.getParameter("Apellido");
 		String Sexo = request.getParameter("Sexo");
@@ -59,7 +59,7 @@ public class ControllerShowEmpleados extends HttpServlet {
 			if (evaluar.equals("btne"))
 			{
 				
-				emple.setIdEmpleado(Integer.parseInt(IdEmpeado));
+				emple.setIdEmpleado(Integer.parseInt(IdEmpleado));
 				EmpleDao.EliminarEmpleado(emple);
 				response.sendRedirect("crudEmpleados.jsp");
 				
@@ -91,7 +91,7 @@ public class ControllerShowEmpleados extends HttpServlet {
 				emple.setDepartamento(Departamento);
 				
 				
-				System.out.println(IdEmpeado);
+				System.out.println(IdEmpleado);
 				EmpleDao.AgregarEmpleado(emple);
 			    response.sendRedirect("crudEmpleados.jsp");
 				
@@ -120,11 +120,11 @@ public class ControllerShowEmpleados extends HttpServlet {
 				emple.setCargo(Cargo);
 				emple.setDepartamento(Departamento);
 				
-				emple.setIdEmpleado(Integer.parseInt(IdEmpeado));
+				emple.setIdEmpleado(Integer.parseInt(IdEmpleado));
 				EmpleDao.ActualizarEmpleado(emple);
 				
 				response.sendRedirect("crudEmpleados.jsp");
-				System.out.println(IdEmpeado);
+				System.out.println(IdEmpleado);
 				
 			}else 
 			{

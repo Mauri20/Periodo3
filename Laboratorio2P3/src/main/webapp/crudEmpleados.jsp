@@ -39,7 +39,8 @@
 </head>
 
 <%
-String IdEmpeado = request.getParameter("idEmpleado");
+String IdEmpleado = request.getParameter("idEmpleado");
+String Empleado = request.getParameter("Empleado");
 String Nombre = request.getParameter("Nombre");
 String Apellido = request.getParameter("Apellido");
 String Sexo = request.getParameter("Sexo");
@@ -50,8 +51,9 @@ String Nit = request.getParameter("Nit");
 String Cargo = request.getParameter("Cargo");
 String Departamento = request.getParameter("Departamento");
 
-if (IdEmpeado == null) {
-	IdEmpeado = "";
+if (IdEmpleado == null) {
+	Empleado = "";
+	IdEmpleado = "";
 	Nombre = "";
 	Apellido = "";
 	Sexo = "";
@@ -110,7 +112,8 @@ function cargar(Id) {
 						<td class="align-middle"> ${item.Departamento} </td>
 											
 						<td><a href="ControllerShowEmpleados?Id=${item.idEmpleado}&Eliminar=btne" class="btn btn-danger"><i class="fas fa-user-minus"></i>&nbsp; Eliminar </td>
-						<td><a href="add.jsp?Id=${item.idUsuario}&Empleado=${item.Nombre}&Pass=${item.PassWord}" class="btn btn-info"><i class="fas fa-user-edit"></i>&nbsp;Actualizar </td>						
+						<td><a href="add.jsp?Id=${item.idUsuario}&Empleado=${item.Nombre}&Pass=${item.PassWord}" class="btn btn-info"><i class="fas fa-user-edit"></i>&nbsp;Actualizar </td>			
+						
 					</tr>			
 				`
 						console.log(item.idEmpleado);

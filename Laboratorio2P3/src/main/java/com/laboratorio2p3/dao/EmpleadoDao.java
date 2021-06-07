@@ -67,15 +67,18 @@ public class EmpleadoDao {
     
     public void EliminarEmpleado(Empleado empleado) {
         
-    	try {
+    	try 
+    	{
            CallableStatement statement = con.prepareCall("call sp_d_Empleado(?);");
            statement.setInt("pIdEmpleado", empleado.getIdEmpleado());
            statement.execute();
                     
            System.out.println("El Empleado ha sido eliminado exitosamente");
            con.close();
-       } catch (Exception e) {
-       	System.out.println("UPS! algo ha ido mal al intentar eliminar (verifique)" + e);
+           
+       } catch (Exception e) 
+    	{
+       	System.out.println("UPS! algo ha ido mal al intentar eliminar" + e);
 
        }
    }
