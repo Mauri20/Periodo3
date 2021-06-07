@@ -109,12 +109,13 @@ function cargar(Id) {
 						<td class="align-middle"> ${item.Nit} </td>
 						<td class="align-middle"> ${item.Nrc} </td>
 											
-						<td><a href="ControllerShowClientes?Id=${item.IdCliente}&Eliminar=btne" class="btn btn-danger"><i class="fas fa-trash-alt"></i></i>&nbsp; Eliminar </td>
-						<td><a name="" href="ClienteUpdate.jsp?Id=${item.idUsuario}&Usuario=${item.Usuario}&Pass=${item.PassWord}" class="btn btn-info"><i class="fas fa-pen-square"></i></i>&nbsp; Actualizar </td>						
+						<td><a href="ControllerShowClientes?Id=${item.IdCliente}&Eliminar=btne" class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i></i>&nbsp; Eliminar </td>
+						<td><a href="ClienteUpdate.jsp?IdCliente=${item.IdCliente}&Cliente=${item.Nombre}&Tipo=${item.Tipo}&Contacto=${item.Contacto}&Telefono=${item.Telefono}&Nombre=${item.Nombre}&Direccion=${item.Direccion}&Correo=${item.Correo}&Dui=${item.Dui}&Nit=${item.Nit}&Nrc=${item.Nrc}" class="btn btn-outline-secondary"><i class="fas fa-external-link-alt"></i></i>&nbsp; Editar </td>	
+						
 					</tr>		
 					
-					
 				`
+						console.log(item.IdCliente);
 				}
 					
 			
@@ -130,25 +131,7 @@ function cargar(Id) {
 			});
 		});
 	
-		$("btne").click(function (){
-					swal({
-					title: "Estas seguro?",
-					text: "Una vez eliminado, no podras recuperar este archivo!",
-					icon: "warning",
-					buttons: true,
-					dangerMode: true,
-					})
-					.then((willDelete) => {
-					if (willDelete) {
-						swal("El archivo ha sido eliminado!", {
-						icon: "success",
-						});
-					} else {
-						swal("Operacion cancelada!");
-					}
-					});	
-				});
-	
+
 	</script>
 	
 <body>
@@ -209,40 +192,40 @@ function cargar(Id) {
 					<input type="hidden" name="Id" id="id" value=<%=IdCliente%> disabled>
 								<div class="col-lg-6 my-1">
 									<label for="Nombre" class="form-label">Nombre:</label>
-									<input type="text" class="form-control" id="NombreCliente" name="Nombre" value=<%=Cliente%>>
+									<input type="text" class="form-control" required id="NombreCliente" name="Nombre" value=<%=Cliente%>>
 								</div>
 								<div class="col-lg-6 my-1">
 									<label for="Tipo" class="form-label">Tipo:</label>
-									<input type="text" class="form-control" name="Tipo" id="Tipo"  value=<%=Tipo%>>
+									<input type="text" class="form-control" name="Tipo" required id="Tipo"  value=<%=Tipo%>>
 								</div>
 								<div class="col-lg-6 my-1">
 									<label for="Contacto" class="form-label">Contacto:</label>
-									<input type="text" class="form-control" name="Contacto" id="Contacto" value=<%=Contacto%>>
+									<input type="text" class="form-control" required name="Contacto" id="Contacto" value=<%=Contacto%>>
 								</div>
 								
 								<div class="col-lg-6 my-1">
 									<label for="telefono" class="form-label">Tel&eacute;fono:</label>
-									<input type="text" name="Telefono" class="form-control" id="telefono" value=<%=Telefono%>>
+									<input type="text" name="Telefono" required class="form-control" id="telefono" value=<%=Telefono%>>
 								</div>
 								<div class="col-lg-12 my-1">
 									<label for="Direccion" class="form-label">Direcci&oacute;n:</label>
-									<textarea  class="form-control" name="Direccion" id="Direccion" rows="3" value=<%=Direccion%>></textarea>
+									<textarea  class="form-control" name="Direccion" required id="Direccion" rows="3" value=<%=Direccion%>></textarea>
 								</div>
 								<div class="col-lg-6 my-1">
 									<label for="Correo" class="form-label">Correo:</label>
-									<input type="text" name="Correo" class="form-control" id="Correo"  value=<%=Correo%>>
+									<input type="text" name="Correo" required class="form-control" id="Correo"  value=<%=Correo%>>
 								</div>
 								<div class="col-lg-6 my-1">
 									<label for="Dui" class="form-label">Dui:</label>
-									<input type="text" name="Dui"  class="form-control" id="Dui" value=<%=Dui%>>
+									<input type="text" name="Dui" required class="form-control" id="Dui" value=<%=Dui%>>
 								</div>
 								<div class="col-lg-6 my-1">
 									<label for="Nit" class="form-label">Nit:</label>
-									<input type="text" name="Nit"  class="form-control" id="Nit" value=<%=Nit%>>
+									<input type="text" name="Nit" required class="form-control" id="Nit" value=<%=Nit%>>
 								</div>
 								<div class="col-lg-6 my-1">
 									<label for="Nrc" class="form-label">Nrc:</label>
-									<input type="text" name="Nrc"  class="form-control" id="Nrc" value=<%=Nrc%>>
+									<input type="text" name="Nrc" required class="form-control" id="Nrc" value=<%=Nrc%>>
 								</div>
 								
 							<center class="mt-2 odal-footer col text-center">
