@@ -247,7 +247,10 @@ function cargar(Id) {
 								
 							<center class="mt-2 odal-footer col text-center">
 							
-							<input type="submit"  name="Guardar"  value="GUARDAR" class="btn btn-success">
+							<button type="submit"  name="Guardar"  value="GUARDAR" class="btn btn-success"> 
+							<span class="fas fa-badge-check"></span>
+							Guardar
+						    </button>
 							</center>	
 					</form>
 				</div>
