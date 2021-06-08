@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	
-<%@ page import="com.laboratorio2p3.entidades.Login" %>	
+
+<%@ page import="com.laboratorio2p3.entidades.Login"%>
 
 <!DOCTYPE html>
 <html>
@@ -38,34 +38,7 @@
 
 </head>
 
-<%
-String IdEmpleado = request.getParameter("idEmpleado");
-String Empleado = request.getParameter("Empleado");
-String Nombre = request.getParameter("Nombre");
-String Apellido = request.getParameter("Apellido");
-String Sexo = request.getParameter("Sexo");
-String Direccion = request.getParameter("Direccion");
-String Telefono = request.getParameter("Telefono");
-String Dui = request.getParameter("Dui");
-String Nit = request.getParameter("Nit");
-String Cargo = request.getParameter("Cargo");
-String Departamento = request.getParameter("Departamento");
 
-if (IdEmpleado == null) {
-	Empleado = "";
-	IdEmpleado = "";
-	Nombre = "";
-	Apellido = "";
-	Sexo = "";
-	Direccion = "";
-	Telefono = "";
-	Dui = "";
-	Nit = "";
-	Cargo = "";
-	Departamento = "";
-
-}
-%>
 
 
 
@@ -106,8 +79,11 @@ function cargar(Id) {
 					<tr>
 						<td class="align-middle"> ${item.idEmpleado} </td>
 						<td class="align-middle"> ${item.Nombre}&nbsp;${item.Apellido} </td>
+						<td class="align-middle"> ${item.Sexo} </td>
 						<td class="align-middle"> ${item.Direccion} </td>
 						<td class="align-middle"> ${item.Telefono} </td>
+						<td class="align-middle"> ${item.Dui} </td>
+						<td class="align-middle"> ${item.Nit} </td>
 						<td class="align-middle"> ${item.Cargo} </td>
 						<td class="align-middle"> ${item.Departamento} </td>
 											
@@ -124,7 +100,7 @@ function cargar(Id) {
 					
 				tabla.innerHTML += `
 					<tr>
-						<td colspan="20">
+						<td colspan="25">
 						<a href="main.jsp" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" id="button-addon2"> <i class="fas fa-user-plus"></i>&nbsp;> Agregar</a>
 					    <a href="main.jsp" class="btn btn-warning" ><i class="fas fa-sign-out-alt"></i>&nbsp;Volver</a>
 					    </td>
@@ -145,20 +121,23 @@ function cargar(Id) {
 					<thead>
 						<tr>
 
-							<th colspan="12"><h2 class="h7">Listado de Empleados</h2></th>
+							<th colspan="15"><h2 class="h5">Listado de Empleados</h2></th>
 
 						</tr>
 						<tr>
-						
+
 							<th>Id</th>
 							<th>Nombre</th>
+							<th>Sexo</th>
 							<th>Direcci&oacute;n</th>
 							<th>Tel&eacute;fono</th>
+							<th>Dui</th>
+							<th>Nit</th>
 							<th>Cargo</th>
 							<th>Departamento</th>
 							<th colspan="2">Opciones</th>
-							
-							
+
+
 						</tr>
 					</thead>
 					<tbody>
@@ -170,117 +149,135 @@ function cargar(Id) {
 			</div>
 		</div>
 	</div>
-	
-	
-	
+
+
+
 	<!-- Modal Agregar-->
 	<div class="modal fade" id="exampleModal" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg modal-dialog-centered">
 			<div class="modal-content bg-dark">
 				<div class="modal-header">
-					<h5 class="modal-title text-white" id="exampleModalLabel">Agregar Empleado</h5>					
+					<h5 class="modal-title text-white" id="exampleModalLabel">Agregar Empleado</h5>
 				</div>
-				
-				
-				
+
+
+
 				<div class="modal-body alert alert-success m-2" role="alert">
 					<div class="col-12">
-						<form action="" method="">
-						
-						
+						<form action="ControllerShowEmpleados" method="get">
+
+
 							<div class="row">
 								<input type="hidden" name="Id" id="id" value="0" disabled>
-								
-								
+
+
 								<div class="col-lg-6 my-1">
-									<label for="nombreEmple" class="form-label">Nombre:</label>
-									<input required type="text" class="form-control" id="nombreEmple" name="Nombre" placeholder="Nombre de empleado">
+									<label for="nombreEmple" class="form-label">Nombre:</label> <input
+										required type="text" class="form-control" id="nombreEmple"
+										name="Nombre" placeholder="Nombre de empleado">
 								</div>
-								
-								
+
+
 								<div class="col-lg-6 my-1">
 									<label for="ApellidoEmple" class="form-label">Apellido:</label>
-									<input required type="text" class="form-control" name="Apellido" id="ApellidoEmple" placeholder="Apellido de empleado">
+									<input required type="text" class="form-control"
+										name="Apellido" id="ApellidoEmple"
+										placeholder="Apellido de empleado">
 								</div>
-								
-								
+
+
 								<div class="col-lg-6 my-1">
-									<label for="Sexo" class="form-label">Sexo:</label>
-									<input required type="text" name="SexoEmple" class="form-control" id="Sexo" placeholder=" ">
+									<label for="SexoEmple" class="form-label">Sexo:</label> 
+									<input required type="text" name="Sexo" class="form-control"
+										id="SexoEmple" placeholder="Sexo de empleado ">
+
+
+
 								</div>
-								
-												
-								
+
+
+
 								<div class="col-lg-6 my-1">
-									<label for="correo" class="form-label">Tel&eacute;fono:</label>
-									<input required type="text" name="Telefono" class="form-control" id="telef" placeholder="">
+									<label for="telef" class="form-label">Tel&eacute;fono:</label>
+									<input required type="text" name="Telefono"
+										class="form-control" id="telef" placeholder="Telefono del empleado">
 								</div>
-								
-								
+
+
 								<div class="col-lg-6 my-1">
-									<label for="nit" class="form-label">Dui:</label>
-									<input required type="text" name="DuiEmple"  class="form-control" id="Dui" placeholder="">
+									<label for="DuiEmple" class="form-label">Dui:</label> <input
+										required type="text" name="Dui" class="form-control"
+										id="DuiEmple" placeholder="">
 								</div>
-								
-								
-									<div class="col-lg-6 my-1">
-									<label for="nrc" class="form-label">Nit:</label>
-									<input required type="text" name="NitEmple"  class="form-control" id="Nit" placeholder="">
-								</div>
-								
-								
-								
+
+
 								<div class="col-lg-6 my-1">
-									<label for="nrc" class="form-label">Cargo:</label>
-									<input required type="text" name="CargoEmple"  class="form-control" id="Cargo" placeholder="">
+									<label for="NitEmple" class="form-label">Nit:</label> <input
+										required type="text" name="Nit" class="form-control"
+										id="NitEmple" placeholder="">
 								</div>
-								
-								
+
+
+
 								<div class="col-lg-6 my-1">
-									<label for="nrc" class="form-label">Departamento:</label>
-									<input required type="text" name="DepartamentoEmple"  class="form-control" id="Departamento" placeholder="">
+									<label for="CargoEmple" class="form-label">Cargo:</label> <input
+										required type="text" name="Cargo" class="form-control"
+										id="CargoEmple" placeholder="">
 								</div>
-								
-								
+
+
+								<div class="col-lg-6 my-1">
+									<label for="DepartamentoEmple" class="form-label">Departamento:</label> <input
+										required type="text" name="Departamento"
+										class="form-control" id="DepartamentoEmple" placeholder="">
+								</div>
+
+
 								<div class="col-lg-12 my-1">
 									<label for="direccion" class="form-label">Direcci&oacute;n:</label>
-									<textarea class="form-control" name="Direccion" id="direc" rows="3"></textarea>
+									<textarea class="form-control" name="Direccion" id="direc"
+										rows="3"></textarea>
 								</div>
-								
-																					
-																			
+
+
+
 								<div class="alert bg-success col-12 oculto" id="result">
 									<div class="row justify-content-center text-white text-center">
-										<p id="texto"> 
-											
-										</p>
+										<p id="texto"></p>
 									</div>
 								</div>
-								
+
 							</div>
-							
-							
-							<center class="mt-2">
-								<button onclick="ejecutar()" type="button" class="btn btn-primary"><span class="fas fa-paper-plane"></span>Registrar Empleado</button>
+
+
+
+
+							<center class="mt-2 odal-footer col text-center">
+								<button type="submit" name="Guardar" value="GUARDAR"
+									class="btn btn-primary">
+									<span class="fas fa-paper-plane"></span>Guardar Empleado
+								</button>
 							</center>
-							
-							
+
 						</form>
 					</div>
 				</div>
-				
-				
-				<div class="modal-footer">					
-					<button type="button" class="btn btn-danger" data-bs-dismiss="modal"><span class="fas fa-sign-out-alt"></span>Close</button>
+
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger"
+						data-bs-dismiss="modal">
+						<span class="fas fa-sign-out-alt"></span>Close
+					</button>
 				</div>
-				
-				
-			
-			
+
+
+
+
 			</div>
 		</div>
 	</div>
-	
+
 </body>
 </html>

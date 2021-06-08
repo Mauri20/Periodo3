@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.laboratorio2p3.dao.EmpleadoDao;
+import com.laboratorio2p3.dao.UsuarioDao;
 import com.laboratorio2p3.entidades.Empleado;
+import com.laboratorio2p3.entidades.Usuario;
 
 /**
  * Servlet implementation class ControllerShowEmpleados
@@ -33,11 +35,14 @@ public class ControllerShowEmpleados extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		String evaluar = request.getParameter("Eliminar");
-		String evaluar2 = request.getParameter("Guardar");
+		Usuario usu = new Usuario();
+		UsuarioDao usuDao = new UsuarioDao();
 		
 		EmpleadoDao EmpleDao = new EmpleadoDao();
 		Empleado emple = new Empleado();
+		
+		String evaluar = request.getParameter("Eliminar");
+		String evaluar2 = request.getParameter("Guardar");
 		
 		String IdEmpleado = request.getParameter("Id");
 		String Nombre = request.getParameter("Nombre");
@@ -49,6 +54,9 @@ public class ControllerShowEmpleados extends HttpServlet {
 		String Nit = request.getParameter("Nit");
 		String Cargo = request.getParameter("Cargo");
 		String Departamento = request.getParameter("Departamento");
+		
+		String Id = request.getParameter("Id");
+		String Id2 = request.getParameter("Id2");
 		
 		
 		
@@ -65,47 +73,39 @@ public class ControllerShowEmpleados extends HttpServlet {
 				
 				
 			}
-		}else 
-		{
-			System.out.println("ERROR");
 		}
-		
-		
-		
 		
 		
 		
 		//GUARDAR
-		if (evaluar2 != null) 
+		else if (evaluar2.equals("GUARDAR")) 
 		{
-			if (evaluar2.equals("GUARDAR")) 
-			{
-				emple.setNombre(Nombre);
-				emple.setApellido(Apellido);
-				emple.setSexo(Sexo);
-				emple.setDireccion(Direccion);
-				emple.setTelefono(Telefono);
-				emple.setDui(Dui);
-				emple.setNit(Nit);
-				emple.setCargo(Cargo);
-				emple.setDepartamento(Departamento);
-				
-				
-				System.out.println(IdEmpleado);
-				EmpleDao.AgregarEmpleado(emple);
-			    response.sendRedirect("crudEmpleados.jsp");
-				
-			}else 
-			{
-				System.out.println("ERROR AL INGRESAR EMPLEADO");
-			}
+			
+			emple.setNombre(Nombre);
+			emple.setApellido(Apellido);
+			emple.setSexo(Sexo);
+			emple.setDireccion(Direccion);
+			emple.setTelefono(Telefono);
+			emple.setDui(Dui);
+			emple.setNit(Nit);
+			emple.setCargo(Cargo);
+			emple.setDepartamento(Departamento);
+			
+			System.out.println(IdEmpleado);
+			EmpleDao.AgregarEmpleado(emple);
+		    response.sendRedirect("crudEmpleados.jsp");
+		}else 
+		{
+			System.out.println("ERROR AL INGRESAR EMPLEADO");
 		}
 		
+	
+		
+
+		//ACTUALIZAR --AUN FALTA
 		
 		
-		
-		
-		//ACTUALIZAR
+		/*
 		if (evaluar2 != null ) 
 		{
 			if (evaluar2.equals("Actualizar")) 
@@ -132,6 +132,7 @@ public class ControllerShowEmpleados extends HttpServlet {
 			}
 			
 		}
+		*/
 		
 		
 		
