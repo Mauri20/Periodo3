@@ -107,7 +107,7 @@
 								
 							<center class="mt-2 odal-footer col text-center">
 							
-							<button type="submit"  name="Actualizar"  value="ACTUALIZAR" class="btn btn-success"> 
+							<button type="submit"  name="Actualizar"  value="ACTUALI" class="btn btn-success"> 
 							<span class="fas fa-badge-check"></span>
 							Actualizar
 						    </button>

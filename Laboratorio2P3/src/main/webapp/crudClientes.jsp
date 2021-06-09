@@ -109,8 +109,8 @@ function cargar(Id) {
 						<td class="align-middle"> ${item.Nit} </td>
 						<td class="align-middle"> ${item.Nrc} </td>
 											
-						<td><a href="ControllerShowClientes?Id=${item.IdCliente}&Eliminar=btne" class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i></i>&nbsp; Eliminar </td>
-						<td><a href="ClienteUpdate.jsp?IdCliente=${item.IdCliente}&Cliente=${item.Nombre}&Tipo=${item.Tipo}&Contacto=${item.Contacto}&Telefono=${item.Telefono}&Nombre=${item.Nombre}&Direccion=${item.Direccion}&Correo=${item.Correo}&Dui=${item.Dui}&Nit=${item.Nit}&Nrc=${item.Nrc}" class="btn btn-outline-secondary"><i class="fas fa-external-link-alt"></i></i>&nbsp; Editar </td>	
+						<td><a href="ControllerShowClientes?Id=${item.IdCliente}&Eliminar=btne" class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></i>&nbsp; Eliminar </td>
+						<td><a href="ClienteUpdate.jsp?IdCliente=${item.IdCliente}&Cliente=${item.Nombre}&Tipo=${item.Tipo}&Contacto=${item.Contacto}&Telefono=${item.Telefono}&Nombre=${item.Nombre}&Direccion=${item.Direccion}&Correo=${item.Correo}&Dui=${item.Dui}&Nit=${item.Nit}&Nrc=${item.Nrc}" class="btn btn-outline-secondary btn-sm"><i class="fas fa-external-link-alt"></i></i>&nbsp; Editar </td>	
 						
 					</tr>		
 					
