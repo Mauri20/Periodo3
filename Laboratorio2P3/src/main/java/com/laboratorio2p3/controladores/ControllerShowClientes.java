@@ -88,7 +88,7 @@ public class ControllerShowClientes extends HttpServlet {
 			}
 			
 		
-			if (actualizar != null) {
+			if (IdCliente == null) {
 				if (actualizar.equals("ACTUALI")) {
 					Cl.setNombre(Nombre);
 					Cl.setTipo(Tipo);
@@ -100,14 +100,14 @@ public class ControllerShowClientes extends HttpServlet {
 					Cl.setNit(Nit);
 					Cl.setNrc(Nrc);
 					System.out.println(IdCliente);
-					ClDao.AgregarCliente(Cl);
+					ClDao.ActualizarCliente(Cl);
 					
 					response.sendRedirect("crudClientes.jsp");
 					
 					
 				} else 
 				{
-					System.out.println("ERROR AL INGRESAR CLIENTE");
+					System.out.println("ERROR AL ACTUALIZAR CLIENTE");
 				}
 			}
 			
