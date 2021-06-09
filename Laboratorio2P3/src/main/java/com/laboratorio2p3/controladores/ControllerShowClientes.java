@@ -100,6 +100,7 @@ public class ControllerShowClientes extends HttpServlet {
 					Cl.setNit(Nit);
 					Cl.setNrc(Nrc);
 					System.out.println(IdCliente);
+					Cl.setIdCliente(Integer.parseInt(IdCliente));
 					ClDao.ActualizarCliente(Cl);
 					
 					response.sendRedirect("crudClientes.jsp");
