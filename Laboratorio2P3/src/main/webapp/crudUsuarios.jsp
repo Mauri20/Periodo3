@@ -56,6 +56,54 @@ function llenarEmpleados() {
 		}
 	});
 }
+function cargarUsuarios() {
+	$.post('ControllerShowUsuarios',{
+		//Esta seccion es para enviar peticiones al servidor
+		
+	}, function (response){
+		//Esta seccion es para recibir informacion
+		let datos = JSON.parse(response);
+		console.log(datos);
+		
+		var tabla = document.getElementById('tablaDatos');
+		
+		for(let item of datos){
+			let tipo;
+			if(item.tipoUsuario=="1"){
+				tipo="Administrador"
+			}else if(item.tipoUsuario=="2"){
+				tipo="Standard"
+			}
+			tabla.innerHTML += `
+			<tr>
+				<td class="align-middle"> ${item.idUsuario} </td>
+				<td class="align-middle"> ${item.Usuario} </td>
+				<td class="align-middle oculto"> ${item.PassWord} </td>
+				<td class="align-middle"> ${item.Empleado.Nombre} </td>
+				<td class="align-middle oculto"> ${item.tipoUsuario} </td>
+				<td class="align-middle"> ${tipo} </td>
+				<td> <a href="ControllerShowUsuarios?IdUsuario=${item.idUsuario}&Eliminar=btne" class="btn btn-danger"><i class="fas fa-user-minus"></i>&nbsp;Eliminar </td>
+				<td> <a onclick="llenarForm('${item.idUsuario}','${item.Usuario}','${item.PassWord}','${item.Empleado.Nombre}','${tipo}')" name="usu" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" id="button-addon2><i class="fas fa-user-edit"></i>&nbsp;Actualizar </td>
+			</tr>
+			
+		`
+				
+			console.log(item.Pass);
+		}
+		tabla.innerHTML += `
+			<tr>
+			<td colspan="20">
+			<a href="" onclick="resetDiv()" class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" id="button-addon2"><i class="fas fa-user-plus"></i>&nbsp;Agregar</a>
+			<a href="main.jsp" class="btn btn-warning" ><i class="fas fa-sign-out-alt"></i>&nbsp;Cancelar</a>
+			</tr>
+			
+	`
+	});
+}
+function llenarForm(IdU,User,Pass,Empleado,Tipo) {
+	
+	$('#user').val(User);
+}
 function ejecutar() {
 	let IdUsuario =$('#id').val();
 	let Empleado =document.getElementById('listEmpleados');
@@ -64,7 +112,9 @@ function ejecutar() {
 	let Pass = $('#pass').val();
 	let Tipos = document.getElementById('listTipo');
 	let Tipo=Tipos.value;
-	alert(IdUsuario);
+	
+	let form=document.getElementById('formUsu');
+
 	$.get('ControllerShowUsuarios',{
 		//Esta seccion es para enviar peticiones al servidor
 		IdUsuario, IdEmpleado, Usuario, Pass, Tipo
@@ -72,48 +122,39 @@ function ejecutar() {
 		//Esta seccion es para recibir informacion
 		let datos = JSON.parse(response);
 		console.log(datos);
-		
+		if(datos=="1"){
+			if($('#result').hasClass('oculto')){
+				var tex=document.getElementById('texto');
+				$('#result').removeClass('oculto');
+				$('#result').addClass('bg-success text-center');
+				tex.innerHTML+="Usuario almacenado con &eacute;xito";
+			}
+			form.reset();
+		} else if(datos=="2"){
+			if($('#result').hasClass('oculto')){
+				var tex=document.getElementById('texto');
+				$('#result').removeClass('oculto');
+				$('#result').addClass('bg-danger text-center');
+				tex.innerHTML+="Ocurri&oacute; un error al guardar";
+			}
+			form.reset();
+		}
 	});
 }
-
-	$(document).ready(function (){
-		llenarEmpleados();
-		$.post('ControllerShowUsuarios',{
-			//Esta seccion es para enviar peticiones al servidor
-			
-		}, function (response){
-			//Esta seccion es para recibir informacion
-			let datos = JSON.parse(response);
-			console.log(datos);
-			
-			var tabla = document.getElementById('tablaDatos');
-			
-			for(let item of datos){
-				tabla.innerHTML += `
-				<tr>
-					<td class="align-middle"> ${item.idUsuario} </td>
-					<td class="align-middle"> ${item.Usuario} </td>
-					
-					<td class="align-middle"> ${item.Empleado.Nombre} </td>
-					
-					<td> <a href="ControllerShowUsuarios?IdUsuario=${item.idUsuario}&Eliminar=btne" class="btn btn-danger"><i class="fas fa-user-minus"></i>&nbsp;Eliminar </td>
-					<td> <a name="usu" class="btn btn-info"><i class="fas fa-user-edit"></i>&nbsp;Actualizar </td>
-				</tr>
-				
-			`
-					
-				console.log(item.Pass);
-			}
-			tabla.innerHTML += `
-				<tr>
-				<td colspan="20">
-				<a href="main.jsp" class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" id="button-addon2"><i class="fas fa-user-plus"></i>&nbsp;Agregar</a>
-				<a href="main.jsp" class="btn btn-warning" ><i class="fas fa-sign-out-alt"></i>&nbsp;Cancelar</a>
-				</tr>
-				
-		`
-		});
-	});
+function resetDiv() {
+	if(!$('#result').hasClass('oculto')){
+		let form=document.getElementById('formUsu');
+		form.reset();
+		$('#result').addClass('oculto');
+		$('#result').removeClass('bg-success bg-danger bg-warning');
+		var tex=document.getElementById('texto');
+		tex.innerText="";
+	}
+}
+$(document).ready(function (){
+	llenarEmpleados();
+	cargarUsuarios();
+});
 	
 	</script>
 	
@@ -131,8 +172,10 @@ function ejecutar() {
 						<tr>
 							<th>idUsuario</th>
 							<th>Usuario</th>
+							<th class="oculto">Contrase&ntilde;a</th>
 							<th>Nombre</th>
-							
+							<th class="oculto">idTipo</th>
+							<th>Tipo</th>
 								
 							<th colspan="2">Opciones</th>
 						</tr>
@@ -167,7 +210,7 @@ function ejecutar() {
 						aria-label="Close"></button>
 				</div>
 				<div class="modal-body alert alert-success m-2" role="alert">
-					<form action="" method="">
+					<form action="" method="" id="formUsu">
 						<div class="row">
 							<input type="hidden" name="Id" id="id" value="0" disabled>
 							<div class="col-lg-6 my-1">
@@ -191,11 +234,9 @@ function ejecutar() {
 									<option value="2">Usuario Standard</option>
 								</select>
 							</div>
-							<div class="alert alert-success bg-success col-12 oculto" id="result">
-								<div class="row justify-content-center text-white text-center">
-									<p id="texto"> 
-										
-									</p>
+							<div class="bg-success col-10 offset-1 oculto" id="result">
+								<div class="row justify-content-center text-white text-center m-2" id="texto">
+									
 								</div>
 							</div>
 						</div>
