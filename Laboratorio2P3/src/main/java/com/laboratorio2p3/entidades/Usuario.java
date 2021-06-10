@@ -5,7 +5,7 @@ public class Usuario{
 	private String Usuario;
     private String PassWord;
     private String tipoUsuario;
-    private Empleado Empleado = new Empleado();
+    private Empleado Empleado;
     
     
     public int getIdUsuario() {

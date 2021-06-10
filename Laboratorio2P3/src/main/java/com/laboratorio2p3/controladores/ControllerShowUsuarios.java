@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.laboratorio2p3.dao.UsuarioDao;
-import com.laboratorio2p3.entidades.Usuario;
+import com.laboratorio2p3.entidades.*;
 
 /**
  * Servlet implementation class ControllerShowUsuarios
@@ -34,32 +34,65 @@ public class ControllerShowUsuarios extends HttpServlet {
 		//codigo nuevo que agregue
 		
 		try {
-			
 			String evaluar = request.getParameter("Eliminar");
-			UsuarioDao usuari = new UsuarioDao();
-			Usuario usua = new Usuario();
-			
-			
-			if (evaluar != null) {
-				
-				
-				if (evaluar.equals("btne")) {
-					
-					
 
-					int idusu = Integer.parseInt(request.getParameter("idUsuario"));
+			UsuarioDao usuDao= new UsuarioDao();
+			if (evaluar != null) {
+				if (evaluar.equals("btne")) {
+					int idUsu = Integer.parseInt(request.getParameter("IdUsuario"));
+					Usuario usu= new Usuario();
+					usu.setIdUsuario(idUsu);
+					usuDao.eliminarUsuario(usu);
 					response.sendRedirect("crudUsuarios.jsp");
-				}else {
+				} else {
 					System.out.println("No viene BTNE");
 				}
-				
-			}else {
+			} else {
 				System.out.println("No viene Eliminar");
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("error 1= " + e);
+		}
+		
+		
+		try {
+			String IdUsu= request.getParameter("IdUsuario");
+			if(IdUsu!=null || IdUsu!=" ") {
+				System.out.println(request.getParameter("Pass")+"-"+request.getParameter("Usuario"));
+				int idUsuario=Integer.parseInt(IdUsu);
+				int idEmpleado=Integer.parseInt(request.getParameter("IdEmpleado"));
+				String usuario= request.getParameter("Usuario");	
+				String pass = request.getParameter("Pass");
+				String tipo = request.getParameter("Tipo");
+				
+				Usuario usu= new Usuario();
+				Empleado emp= new Empleado();
+				UsuarioDao usuDao= new UsuarioDao();
+				Gson json= new Gson();
+				usu.setIdUsuario(idUsuario);
+				usu.setUsuario(usuario);
+				usu.setPassWord(pass);
+				usu.setTipoUsuario(tipo);
+				emp.setIdEmpleado(idEmpleado);
+				usu.setEmpleado(emp);
+				
+				
+				
+				response.getWriter().append(json.toJson(usu));
+				
+				if(idUsuario==0) {
+					
+				}else if(idUsuario>0) {
+					
+				}
+			}else {
+				System.out.println("IdUsu=null");
 			}
 			
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.out.println("error 1= " + e);
+			System.out.println("Error al recibir datos: "+e);
 		}
 		
 	}
