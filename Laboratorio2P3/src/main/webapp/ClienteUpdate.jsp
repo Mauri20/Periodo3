@@ -116,5 +116,9 @@
 					</form>
 					
 </section>
+
+<center>
+<a href="crudClientes.jsp" class="btn btn-danger regular-button btn-sm" ><i class="far fa-window-close"></i></i>&nbsp; CANCELAR </a>
+</center>
 </body>
 </html>

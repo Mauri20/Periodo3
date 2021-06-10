@@ -11,7 +11,7 @@ body{
 
 .form-register{
 	width: 700px;
-	background: #4215C4;
+	background: #3D1D4B, #4215C4;
 	padding: 30px;
 	margin: auto;
 	margin-top: 20px;
@@ -35,7 +35,7 @@ label{
 	width: 100%;
 	padding: 10px;
 	margin-bottom: 14px;
-	border: 1px solid #3D1D4B,#4215C4;
+	border: 1px solid #3D1D4B,#5A1273;
 	font-size: 15px;
 }
 
@@ -59,7 +59,7 @@ label{
 	font-family: "Montserrat", sans-serif;
 	font-size: 18px;
 	width: 100%;
-	background: #3D1D4B;
+	background: #3D1D4B, #4215C4;
 	border: none;
 	padding: 12px;
 	color: #ffff;
