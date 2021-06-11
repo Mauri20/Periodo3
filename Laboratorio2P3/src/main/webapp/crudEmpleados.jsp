@@ -2,16 +2,25 @@
 	pageEncoding="ISO-8859-1"%>
 
 <%@ page import="com.laboratorio2p3.entidades.Login"%>
-
 <!DOCTYPE html>
+
+<%
+		//Retomando sesion
+		HttpSession sesion = (HttpSession) request.getSession();
+		Login log= (Login) sesion.getAttribute("log");
+		
+		//System.out.print( "Nombre usuario: "+log.getUser()+" ");
+		
+		if(log==null)
+		{
+			response.sendRedirect("index.jsp");
+		}
+	%>
+
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Empleados</title>
-
-
-
-
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -86,9 +95,16 @@ function cargar(Id) {
 						<td class="align-middle"> ${item.Nit} </td>
 						<td class="align-middle"> ${item.Cargo} </td>
 						<td class="align-middle"> ${item.Departamento} </td>
+					
 											
-						<td><a href="ControllerShowEmpleados?Id=${item.idEmpleado}&Eliminar=btne" class="btn btn-danger"><i class="fas fa-user-minus"></i>&nbsp; Eliminar </td>
-						<td><a href="add.jsp?Id=${item.idUsuario}&Empleado=${item.Nombre}&Pass=${item.PassWord}" class="btn btn-info"><i class="fas fa-user-edit"></i>&nbsp;Actualizar </td>			
+				
+						<td><a href="ControllerShowEmpleados?Id=${item.idEmpleado}&Eliminar=btne" class="btn btn-danger"> Eliminar </td>
+						
+						<td> <a onclick="llenarform('${item.idEmpleado}','${item.Nombre}','${item.Apellido}',
+							'${item.Sexo}','${item.Direccion}','${item.Telefono}','${item.Dui}','${item.Nit}','${item.Cargo}','${item.Departamento}' )" 
+							name="emple" class="btn btn-info" data-bs-toggle="modal" 
+							data-bs-target="#exampleModal" type="button" id="button-addon2><i class="fas fa-user-edit"">
+							</i>&nbsp;Actualizar </td>			
 						
 					</tr>			
 				`
@@ -110,6 +126,12 @@ function cargar(Id) {
 		});
 	
 	
+	function llenarform(IdE,Nombre,Apellido,Sexo,Telefono,Dui,Nit,Cargo,Departamento,Direccion) 
+	{
+		$('#nombre').val(Nombre);
+	}
+	
+
 	
 	</script>
 <body>
