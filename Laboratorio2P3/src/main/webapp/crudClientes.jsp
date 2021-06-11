@@ -3,6 +3,17 @@
 <%@ page import="com.laboratorio2p3.entidades.Login" %>
 
 <!DOCTYPE html>
+<%
+		//Retomando sesion
+		HttpSession sesion = (HttpSession) request.getSession();
+		Login log= (Login) sesion.getAttribute("log");
+		
+		//System.out.print( "Nombre usuario: "+log.getUser()+" ");
+		
+		if(log==null){
+			response.sendRedirect("index.jsp");
+		}
+	%>
 <html>
 
 <head>
@@ -110,7 +121,7 @@ function cargar(Id) {
 						<td class="align-middle"> ${item.Nrc} </td>
 											
 						<td><a href="ControllerShowClientes?Id=${item.IdCliente}&Eliminar=btne" class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></i>&nbsp; Eliminar </td>
-						<td><a href="ClienteUpdate.jsp?IdCliente=${item.IdCliente}&Cliente=${item.Nombre}&Tipo=${item.Tipo}&Contacto=${item.Contacto}&Telefono=${item.Telefono}&Nombre=${item.Nombre}&Direccion=${item.Direccion}&Correo=${item.Correo}&Dui=${item.Dui}&Nit=${item.Nit}&Nrc=${item.Nrc}" class="btn btn-outline-secondary btn-sm"><i class="fas fa-external-link-alt"></i></i>&nbsp; Editar </td>	
+						<td><a name="act"class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button"><i class="fas fa-external-link-alt"></i></i>&nbsp; Editar </td>	
 						
 					</tr>		
 					
@@ -181,7 +192,7 @@ function cargar(Id) {
 			<div class="modal-content  bg-muted modalA">
 				<div class="modal-header">
 				
-					<h6 class="modal-title text-black font-weight-bold It�lica text-dark col text-center" id="exampleModalLabel">AGREGAR</h6>
+					<h6 class="modal-title text-black font-weight-bold It�lica text-dark col text-center" id="exampleModalLabel"></h6>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>
