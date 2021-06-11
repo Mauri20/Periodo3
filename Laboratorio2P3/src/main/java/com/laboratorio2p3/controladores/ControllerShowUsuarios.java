@@ -58,8 +58,8 @@ public class ControllerShowUsuarios extends HttpServlet {
 		
 		try {
 			String IdUsu= request.getParameter("IdUsuario");
-			if(IdUsu!=null || IdUsu!=" ") {
-				System.out.println(request.getParameter("Pass")+"-"+request.getParameter("Usuario"));
+			if(IdUsu!=null || IdUsu!="") {
+				//System.out.println(request.getParameter("Pass")+"-"+request.getParameter("Usuario"));
 				int idUsuario=Integer.parseInt(IdUsu);
 				int idEmpleado=Integer.parseInt(request.getParameter("IdEmpleado"));
 				String usuario= request.getParameter("Usuario");	
@@ -70,6 +70,7 @@ public class ControllerShowUsuarios extends HttpServlet {
 				Empleado emp= new Empleado();
 				UsuarioDao usuDao= new UsuarioDao();
 				Gson json= new Gson();
+				String resultado="0";
 				usu.setIdUsuario(idUsuario);
 				usu.setUsuario(usuario);
 				usu.setPassWord(pass);
@@ -78,12 +79,17 @@ public class ControllerShowUsuarios extends HttpServlet {
 				usu.setEmpleado(emp);
 				
 				
-				
-				response.getWriter().append(json.toJson(usu));
-				
 				if(idUsuario==0) {
-					
+					boolean ola=false;
+					if(ola) {
+						resultado="1";
+					}else {
+						resultado="2";
+					}
+					response.getWriter().append(json.toJson(resultado));
 				}else if(idUsuario>0) {
+					
+				}else {
 					
 				}
 			}else {

@@ -17,7 +17,8 @@ public class UsuarioDao {
     
     
     //SP_I_USUARIO--COMPLETADO!
-    public void agregarUsuario(Usuario usuario){
+    public boolean agregarUsuario(Usuario usuario){
+    	boolean guardar=false;
       try {
             CallableStatement statement = con.prepareCall("call SP_I_Usuario(?,?,?,?,?)");
             
@@ -25,17 +26,20 @@ public class UsuarioDao {
             statement.setString("pUsuario", usuario.getUsuario());
             statement.setString("pPass", usuario.getPassWord());
             statement.setString("pTipo", usuario.getTipoUsuario());
+            statement.setInt("pId", usuario.getEmpleado().getIdEmpleado());
             //Empleado
             //statement.setInt("pId", usuario.getId());  
-            
-    
-            statement.execute();
+            int res=statement.executeUpdate();
+            if(res>=1) {
+            	guardar=true;
+            }
             con.close();
             
             System.out.println("DATOS REGISTRADOS!");
         } catch (Exception e) {
-        	System.out.println("ERROR AL REGISTRAR LOS DATOS");
-        }         
+        	System.out.println("ERROR AL REGISTRAR LOS DATOS"+e);
+        }     
+      	return guardar;
     }
     //SP_U_USUARIO--COMPLETADO!
     public void actualizarUsuario(Usuario usuario) {
