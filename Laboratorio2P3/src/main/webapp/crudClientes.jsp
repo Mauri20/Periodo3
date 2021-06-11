@@ -121,7 +121,8 @@ function cargar(Id) {
 						<td class="align-middle"> ${item.Nrc} </td>
 											
 						<td><a href="ControllerShowClientes?Id=${item.IdCliente}&Eliminar=btne" class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></i>&nbsp; Eliminar </td>
-						<td><a name="act"class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button"><i class="fas fa-external-link-alt"></i></i>&nbsp; Editar </td>	
+						<td><a name="act"class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button"><i class="fas fa-external-link-alt"
+							href="IdCliente=${item.IdCliente}&Cliente=${item.Nombre}&Tipo=${item.Tipo}&Contacto=${item.Contacto}&Telefono=${item.Telefono}Direccion=${item.Direccion}&Correo=${item.Correo}&Dui=${item.Dui}&Nit=${item.Nit}&Nrc=${item.Nrc}"></i></i>&nbsp; Editar </td>	
 						
 					</tr>		
 					
@@ -141,6 +142,20 @@ function cargar(Id) {
 				`
 			});
 		});
+	function llenarForm(IdCliente, Nombre, Tipo, Contacto, Telefono, Direccion, Correo, Dui, Nit, Nrc) {
+		
+		$("IdCliente").val(IdCliente);
+		$("Cliente").val(Nombre);
+		$("Tipo").val(Tipo);
+		$("Contacto").val(Contacto);
+		$("Telefono").val(Telefono);
+		$("Direccion").val(Direccion);
+		$("Correo").val(Correo);
+		$("Dui").val(Dui);
+		$("Nit").val(Nit);
+		$("nrc").val(Nrc);
+
+	}
 	
 
 	</script>
@@ -260,6 +275,7 @@ function cargar(Id) {
 			</div>
 		</div>
 	</div>
+
 	
 </body>
 </html>

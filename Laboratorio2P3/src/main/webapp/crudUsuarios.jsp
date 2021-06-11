@@ -83,7 +83,7 @@ function cargarUsuarios() {
 				<td class="align-middle oculto"> ${item.tipoUsuario} </td>
 				<td class="align-middle"> ${tipo} </td>
 				<td> <a href="ControllerShowUsuarios?IdUsuario=${item.idUsuario}&Eliminar=btne" class="btn btn-danger"><i class="fas fa-user-minus"></i>&nbsp;Eliminar </td>
-				<td> <a onclick="llenarForm('${item.idUsuario}','${item.Usuario}','${item.PassWord}','${item.Empleado.Nombre}','${tipo}')" name="usu" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" id="button-addon2><i class="fas fa-user-edit"></i>&nbsp;Actualizar </td>
+				<td> <a onclick="llenarForm('${item.idUsuario}','${item.Usuario}','${item.PassWord}','${item.Empleado.Nombre}','${tipo}')" name="usu" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" id="button-addon2><i class="fas fa-user-edit""></i>&nbsp;Actualizar </td>
 			</tr>
 			
 		`

@@ -40,10 +40,11 @@ public class ControllerShowClientes extends HttpServlet {
 		String Dui = request.getParameter("Dui");
 		String Nit = request.getParameter("Nit");
 		String Nrc = request.getParameter("Nrc");
- System.out.println(request.getParameter("Guardar"));
+        System.out.println(request.getParameter("Guardar"));
 
 			String evaluar = request.getParameter("Eliminar");
 			String agregar = request.getParameter("Guardar");
+			String actualizar = request.getParameter("Actualizar");
 			
 			ClienteDao ClDao = new ClienteDao();
 			Cliente Cl = new Cliente();
@@ -55,16 +56,7 @@ public class ControllerShowClientes extends HttpServlet {
 					ClDao.EliminarCliente(Cl);
 					response.sendRedirect("crudClientes.jsp");
 				}
-			} else {
-				System.out.println("ERROR");
-				
-			}
-			
-			
-			
-			
-			if (agregar == null) {
-				if (agregar.equals("GUARDAR")) {
+			} else if (agregar.equals("GUARDAR")) {
 					Cl.setNombre(Nombre);
 					Cl.setTipo(Tipo);
 					Cl.setContacto(Contacto);
@@ -80,18 +72,19 @@ public class ControllerShowClientes extends HttpServlet {
 					response.sendRedirect("crudClientes.jsp");
 					
 					
-				} else if (IdCliente != null){
-					Cl.setIdCliente(Integer.parseInt(IdCliente));
-					ClDao.ActualizarCliente(Cl);
-					response.sendRedirect("crudClientes.jsp");
-				}
+				} else if (IdCliente == "" || IdCliente == null){
+		 
+			Cl.setIdCliente(Integer.parseInt(IdCliente));
+			ClDao.ActualizarCliente(Cl);
+			response.sendRedirect("crudClientes.jsp");
 			
+			}else {
+				System.out.println("Error Al Actualizar CSC");
 			}
+	 }
+	 
 			
-		
-			
-		}
-			
+	 
 				
 			
 			
