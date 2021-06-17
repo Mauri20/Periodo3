@@ -64,6 +64,7 @@ public class ControllerShowUsuarios extends HttpServlet {
 				int idEmpleado=Integer.parseInt(request.getParameter("IdEmpleado"));
 				String usuario= request.getParameter("Usuario");	
 				String pass = request.getParameter("Pass");
+				String pass2=request.getParameter("Pass2");
 				String tipo = request.getParameter("Tipo");
 				
 				Usuario usu= new Usuario();
@@ -78,20 +79,31 @@ public class ControllerShowUsuarios extends HttpServlet {
 				emp.setIdEmpleado(idEmpleado);
 				usu.setEmpleado(emp);
 				
-				
 				if(idUsuario==0) {
-					boolean ola=false;
-					if(ola) {
+					if(usuDao.agregarUsuario(usu)) {
 						resultado="1";
 					}else {
 						resultado="2";
 					}
-					response.getWriter().append(json.toJson(resultado));
+					
 				}else if(idUsuario>0) {
-					
+					if(pass2.equals(usu.getPassWord())) {
+						if(usuDao.actualizarUsuario(usu)==1) {
+							resultado="3";
+						}else {
+							resultado="4";
+						}
+					}else {
+						if(usuDao.actualizarUsuario(usu, pass2)==1) {
+							resultado="3";
+						}else {
+							resultado="4";
+						}
+					}
 				}else {
-					
+					System.out.println("IdUsu invalido");
 				}
+				response.getWriter().append(json.toJson(resultado));
 			}else {
 				System.out.println("IdUsu=null");
 			}

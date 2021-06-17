@@ -20,9 +20,8 @@ public class UsuarioDao {
     public boolean agregarUsuario(Usuario usuario){
     	boolean guardar=false;
       try {
-            CallableStatement statement = con.prepareCall("call SP_I_Usuario(?,?,?,?,?)");
+            CallableStatement statement = con.prepareCall("call SP_I_Usuario(?,?,?,?)");
             
-            statement.setInt("pIdusu", usuario.getIdUsuario());
             statement.setString("pUsuario", usuario.getUsuario());
             statement.setString("pPass", usuario.getPassWord());
             statement.setString("pTipo", usuario.getTipoUsuario());
@@ -42,40 +41,48 @@ public class UsuarioDao {
       	return guardar;
     }
     //SP_U_USUARIO--COMPLETADO!
-    public void actualizarUsuario(Usuario usuario) {
+    public int actualizarUsuario(Usuario usuario) {
+    	int res=0;
         try {
             CallableStatement statement = con.prepareCall("call SP_U_Usuario(?,?,?,?)");
+            
             
             statement.setInt("pIdusu", usuario.getIdUsuario());  
             statement.setString("pUsuario", usuario.getUsuario());
             statement.setString("pTipo", usuario.getTipoUsuario());
+            statement.setInt("pId", usuario.getEmpleado().getIdEmpleado());
             //Empleado
             //statement.setInt("pId", usuario.getId());  
             //System.out.println(usuario.getIdUsuario()+"-"+usuario.getUsuario()+"-"+usuario.getPass()+"-"+usuario.getTipo()+"-"+usuario.getId());
             int i =statement.executeUpdate();
             if(i==1){
+            	res=1;
             	System.out.println("USUARIO ACTUALIZADOOOOOOOO!");
             }else{
             	System.out.println("Error al Actualizar");
             }
             con.close();
         } catch (Exception e) {
-        	System.out.println("ERROR AL ACTUALIZAR");
+        	System.out.println("ERROR AL ACTUALIZAR"+e);
         }
+        return res;
     }
-    public void actualizarUsuario(Usuario usuario, String passUdate) {
+    public int actualizarUsuario(Usuario usuario, String passUdate) {
+    	int res=0;
         try {
             CallableStatement statement = con.prepareCall("call SP_U_Usuario2(?,?,?,?,?)");
             
             statement.setInt("pIdusu", usuario.getIdUsuario());  
             statement.setString("pUsuario", usuario.getUsuario());
-            statement.setString("pPass", passUdate);
+            statement.setString("pPass", usuario.getPassWord());
             statement.setString("pTipo", usuario.getTipoUsuario());
+            statement.setInt("pId", usuario.getEmpleado().getIdEmpleado());
             //Empleado
             //statement.setInt("pId", usuario.getId());  
             //System.out.println(usuario.getIdUsuario()+"-"+usuario.getUsuario()+"-"+usuario.getPass()+"-"+usuario.getTipo()+"-"+usuario.getId());
             int i =statement.executeUpdate();
             if(i==1){
+            	res=1;
             	System.out.println("USUARIO ACTUALIZADO");
             }else{
             	System.out.println("Error al Actualizar");
@@ -84,6 +91,7 @@ public class UsuarioDao {
         } catch (Exception e) {
         	System.out.println("ERROR AL ACTUALIZAR");
         }
+        return res;
     }
        
     //SP_D_USUARIO--COMPLETADO!

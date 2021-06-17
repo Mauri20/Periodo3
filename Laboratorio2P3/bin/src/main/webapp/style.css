@@ -1,0 +1,101 @@
+@charset "ISO-8859-1";
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background:linear-gradient(to right,#3D1D4B,#4215C4);
+}
+.bodyModal {
+    /*background:linear-gradient(to right,#3D1D4B,#4215C4);*/
+    box-shadow: 3px 3px 20px 10px #5A1273;
+}
+.modalA{
+	box-shadow: 3px 3px 30px 5px #5A1273;
+}
+.card {
+    margin-bottom: 20px;
+    border: none
+}
+
+.box {
+    width: 100%;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    left: 60%;
+    background: #191919;
+    border-radius: 5px;
+    text-align: center;
+    transition: 0.25s;
+    margin-top: 23%;
+}
+
+.box input[type="text"],
+.box input[type="password"] {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #3498db;
+    padding: 10px 10px;
+    width: 250px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s
+}
+
+.box h1 {
+    color: white;
+    font-weight: 500
+}
+
+.box input[type="text"]:focus,
+.box input[type="password"]:focus {
+    width: 300px;
+    border-color: #2ecc71
+}
+
+.box input[type="submit"] {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #2ecc71;
+    padding: 14px 40px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer
+}
+
+.box input[type="submit"]:hover {
+    background: #2ecc71
+}
+
+.forgot {
+    text-decoration: underline
+}
+.table1{
+    width: 100%;
+    padding: 40px;
+    position: absolute;
+    background: black;
+    top: 30%;
+    left: 30%;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 23%;
+}
+.table2{
+    
+    background: black;
+    border-radius: 5px;
+    text-align: center;
+}
+.oculto{
+	display:none;
+}

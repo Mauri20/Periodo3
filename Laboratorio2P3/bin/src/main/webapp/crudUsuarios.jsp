@@ -66,26 +66,7 @@ function cargarUsuarios() {
 		console.log(datos);
 		
 		var tabla = document.getElementById('tablaDatos');
-		tabla.innerHTML=`
-			<thead>
-				<tr>
-					<th colspan="7"><h2 class="h2">Listado de usuarios</h2></th>
-				</tr>
-				<tr>
-					<th>idUsuario</th>
-					<th>Usuario</th>
-					<th class="oculto">Contrase&ntilde;a</th>
-					<th>Nombre</th>
-					<th class="oculto">idTipo</th>
-					<th>Tipo</th>
-						
-					<th colspan="2">Opciones</th>
-				</tr>
-			</thead>
-			<tbody>
-			</tbody>
-			&nbsp;
-		`
+		
 		for(let item of datos){
 			let tipo;
 			if(item.tipoUsuario=="1"){
@@ -102,12 +83,12 @@ function cargarUsuarios() {
 				<td class="align-middle oculto"> ${item.tipoUsuario} </td>
 				<td class="align-middle"> ${tipo} </td>
 				<td> <a href="ControllerShowUsuarios?IdUsuario=${item.idUsuario}&Eliminar=btne" class="btn btn-danger"><i class="fas fa-user-minus"></i>&nbsp;Eliminar </td>
-				<td> <a onclick="llenarForm('${item.idUsuario}','${item.Usuario}','${item.PassWord}','${item.Empleado.idEmpleado}','${item.tipoUsuario}')" name="usu" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" id="button-addon2"><i class="fas fa-user-edit"></i>&nbsp;Actualizar </td>
+				<td> <a onclick="llenarForm('${item.idUsuario}','${item.Usuario}','${item.PassWord}','${item.Empleado.Nombre}','${tipo}')" name="usu" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" id="button-addon2><i class="fas fa-user-edit""></i>&nbsp;Actualizar </td>
 			</tr>
 			
 		`
 				
-			//console.log(item.Empleado);
+			console.log(item.Pass);
 		}
 		tabla.innerHTML += `
 			<tr>
@@ -120,72 +101,45 @@ function cargarUsuarios() {
 	});
 }
 function llenarForm(IdU,User,Pass,Empleado,Tipo) {
-	resetDiv();
-	$('#id').val(IdU);
+	
 	$('#user').val(User);
-	$('#pass').val(Pass);
-	$('#pass2').val(Pass);
-	document.getElementById('listEmpleados').value=Empleado;
-	document.getElementById('listTipo').value=Tipo;
 }
 function ejecutar() {
-	resetDiv()
 	let IdUsuario =$('#id').val();
 	let Empleado =document.getElementById('listEmpleados');
 	let IdEmpleado=Empleado.value;
 	let Usuario = $('#user').val();
 	let Pass = $('#pass').val();
-	let Pass2=$('#pass2').val();
 	let Tipos = document.getElementById('listTipo');
 	let Tipo=Tipos.value;
 	
 	let form=document.getElementById('formUsu');
 
-	if(Usuario==""||Pass==""){
-		
-	}else{
-		$.get('ControllerShowUsuarios',{
-			//Esta seccion es para enviar peticiones al servidor
-			IdUsuario, IdEmpleado, Usuario, Pass, Tipo, Pass2
-		}, function (response){
-			//Esta seccion es para recibir informacion
-			let datos = JSON.parse(response);
-			console.log(datos);
-			if(datos=="1"){
+	$.get('ControllerShowUsuarios',{
+		//Esta seccion es para enviar peticiones al servidor
+		IdUsuario, IdEmpleado, Usuario, Pass, Tipo
+	}, function (response){
+		//Esta seccion es para recibir informacion
+		let datos = JSON.parse(response);
+		console.log(datos);
+		if(datos=="1"){
+			if($('#result').hasClass('oculto')){
 				var tex=document.getElementById('texto');
-				tex.innerHTML="";
 				$('#result').removeClass('oculto');
 				$('#result').addClass('bg-success text-center');
-				tex.innerHTML="Usuario almacenado con &eacute;xito";
-				
-				form.reset();
-			} else if(datos=="2"){
-				var tex=document.getElementById('texto');
-				tex.innerHTML="";
-				$('#result').removeClass('oculto');
-				$('#result').addClass('bg-danger text-center');
-				tex.innerHTML="Ocurri&oacute; un error al guardar";
-				
-				form.reset();
-			}else if(datos=="3"){
-				var tex=document.getElementById('texto');
-				tex.innerHTML="";
-				$('#result').removeClass('oculto');
-				$('#result').addClass('bg-success text-center');
-				tex.innerHTML="Usuario actualizado con &eacute;xito";
-				form.reset();
-			}else if(datos=="4"){
-				var tex=document.getElementById('texto');
-				tex.innerHTML="";
-				$('#result').removeClass('oculto');
-				$('#result').addClass('bg-danger text-center');
-				tex.innerHTML="Ocurri&oacute; un error al actualizar";
-				
-				form.reset();
+				tex.innerHTML+="Usuario almacenado con &eacute;xito";
 			}
-			cargarUsuarios();
-		});		
-	}
+			form.reset();
+		} else if(datos=="2"){
+			if($('#result').hasClass('oculto')){
+				var tex=document.getElementById('texto');
+				$('#result').removeClass('oculto');
+				$('#result').addClass('bg-danger text-center');
+				tex.innerHTML+="Ocurri&oacute; un error al guardar";
+			}
+			form.reset();
+		}
+	});
 }
 function resetDiv() {
 	if(!$('#result').hasClass('oculto')){
@@ -211,7 +165,23 @@ $(document).ready(function (){
 			<div class="col-md-12">
 				<table id="tablaDatos" class="table2 table table-striped table-dark table-hover">
 					
-					
+					<thead>
+						<tr>
+							<th colspan="7"><h2 class="h2">Listado de usuarios</h2></th>
+						</tr>
+						<tr>
+							<th>idUsuario</th>
+							<th>Usuario</th>
+							<th class="oculto">Contrase&ntilde;a</th>
+							<th>Nombre</th>
+							<th class="oculto">idTipo</th>
+							<th>Tipo</th>
+								
+							<th colspan="2">Opciones</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
 					&nbsp;
 				</table>
 			</div>
@@ -256,7 +226,6 @@ $(document).ready(function (){
 							<div class="col-lg-6 my-1">
 								<label for="telef" class="form-label">Contrase&ntilde;a</label>
 								<input required type="password" name="contra" class="form-control" id="pass" placeholder="Escriba una contrase&ntilde;a">
-								<input required type="hidden" name="contra2" id="pass2">
 							</div>
 							<div class="col-lg-6 my-1">
 								<label for="listadoMarcas" class="form-label">Seleccione Tipo de Usuario</label>
@@ -274,7 +243,7 @@ $(document).ready(function (){
 						<center class="mt-2">
 							<button onclick="ejecutar()" type="button" class="btn btn-primary">
 								<span class="fas fa-paper-plane"></span>
-								Guardar
+								Registrar Usuario
 							</button>
 						</center>
 					</form>
