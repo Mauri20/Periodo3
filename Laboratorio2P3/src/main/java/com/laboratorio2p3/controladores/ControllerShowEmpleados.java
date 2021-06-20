@@ -34,82 +34,46 @@ public class ControllerShowEmpleados extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		
-		Usuario usu = new Usuario();
-		UsuarioDao usuDao = new UsuarioDao();
-		
 		EmpleadoDao EmpleDao = new EmpleadoDao();
 		Empleado emple = new Empleado();
-		
-		String evaluar = request.getParameter("Eliminar");
-		String evaluar2 = request.getParameter("Guardar");
-		
-		String IdEmpleado = request.getParameter("Id");
-		String Nombre = request.getParameter("Nombre");
-		String Apellido = request.getParameter("Apellido");
-		String Sexo = request.getParameter("Sexo");
-		String Direccion = request.getParameter("Direccion");
-		String Telefono = request.getParameter("Telefono");
-		String Dui = request.getParameter("Dui");
-		String Nit = request.getParameter("Nit");
-		String Cargo = request.getParameter("Cargo");
-		String Departamento = request.getParameter("Departamento");
-		
-		String Id = request.getParameter("Id");
-		String Id2 = request.getParameter("Id2");
-		
-		
-		
-		
-		// OPCION ELIMINAR 
-		if (evaluar != null) 
-		{
-			if (evaluar.equals("btne"))
-			{
-				
-				emple.setIdEmpleado(Integer.parseInt(IdEmpleado));
-				EmpleDao.EliminarEmpleado(emple);
-				response.sendRedirect("crudEmpleados.jsp");
-				
-				
+		//ELIMINAR
+		try {
+			String evaluar = request.getParameter("Eliminar");
+			if (evaluar != null) {
+				if (evaluar.equals("btne")) {
+					int idEmple = Integer.parseInt(request.getParameter("Id"));
+					emple.setIdEmpleado(idEmple);
+					EmpleDao.EliminarEmpleado(emple);
+					response.sendRedirect("crudEmpleados.jsp");
+				} else {
+					System.out.println("No viene BTNE");
+				}
+			} else {
+				System.out.println("No viene Eliminar");
 			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("error 1= " + e);
 		}
-		
-		
-		
-		//GUARDAR
-		else if (evaluar2.equals("GUARDAR")) 
-		{
-			
-			emple.setNombre(Nombre);
-			emple.setApellido(Apellido);
-			emple.setSexo(Sexo);
-			emple.setDireccion(Direccion);
-			emple.setTelefono(Telefono);
-			emple.setDui(Dui);
-			emple.setNit(Nit);
-			emple.setCargo(Cargo);
-			emple.setDepartamento(Departamento);
-			
-			System.out.println(IdEmpleado);
-			EmpleDao.AgregarEmpleado(emple);
-		    response.sendRedirect("crudEmpleados.jsp");
-		}else 
-		{
-			System.out.println("ERROR AL INGRESAR EMPLEADO");
-		}
-		
-	
-		
-
-		//ACTUALIZAR --AUN FALTA
-		
-		
-		/*
-		if (evaluar2 != null ) 
-		{
-			if (evaluar2.equals("Actualizar")) 
-			{
+		//GUARDAR Y ACTUALIZAR
+		try {
+			String IdEmple= request.getParameter("IdEmpleado");
+			if(IdEmple!=null || IdEmple!="") {
+				//System.out.println(request.getParameter("Pass")+"-"+request.getParameter("Usuario"));
+				int idEmplea=Integer.parseInt(IdEmple);
+				String Nombre = request.getParameter("Nombre");
+				String Apellido = request.getParameter("Apellido");
+				String Sexo = request.getParameter("Sexo");
+				String Direccion = request.getParameter("Direccion");
+				String Telefono = request.getParameter("Telefono");
+				String Dui = request.getParameter("Dui");
+				String Nit = request.getParameter("Nit");
+				String Cargo = request.getParameter("Cargo");
+				String Departamento = request.getParameter("Departamento");
+				
+				Gson json= new Gson();
+				String resultado="0";
+				emple.setIdEmpleado(idEmplea);
 				emple.setNombre(Nombre);
 				emple.setApellido(Apellido);
 				emple.setSexo(Sexo);
@@ -120,25 +84,30 @@ public class ControllerShowEmpleados extends HttpServlet {
 				emple.setCargo(Cargo);
 				emple.setDepartamento(Departamento);
 				
-				emple.setIdEmpleado(Integer.parseInt(IdEmpleado));
-				EmpleDao.ActualizarEmpleado(emple);
-				
-				response.sendRedirect("crudEmpleados.jsp");
-				System.out.println(IdEmpleado);
-				
-			}else 
-			{
-				System.out.println("ERROR AL ACTUALIZAR EMPLEADO");
+				if(idEmplea==0) {
+					if(EmpleDao.AgregarEmpleado(emple)) {
+						resultado="1";
+					}else {
+						resultado="2";
+					}
+				}else if(idEmplea>0) {
+					if(EmpleDao.ActualizarEmpleado(emple)) {
+						resultado="3";
+					}else {
+						resultado="4";
+					}
+				}else {
+					System.out.println("IdEmplea invalido");
+				}
+				response.getWriter().append(json.toJson(resultado));
+			}else {
+				System.out.println("IdEmplea=null");
 			}
 			
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("Error al recibir datos: "+e);
 		}
-		*/
-		
-		
-		
-		
-		
-		
 		
 	}
 

@@ -113,7 +113,7 @@ function cargarUsuarios() {
 			<tr>
 			<td colspan="20">
 			<a href="" onclick="resetDiv()" class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" id="button-addon2"><i class="fas fa-user-plus"></i>&nbsp;Agregar</a>
-			<a href="main.jsp" class="btn btn-warning" ><i class="fas fa-sign-out-alt"></i>&nbsp;Cancelar</a>
+			<a href="main.jsp" class="btn btn-warning" ><i class="fas fa-sign-out-alt"></i>&nbsp;Volver</a>
 			</tr>
 			
 	`

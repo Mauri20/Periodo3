@@ -14,7 +14,8 @@ public class EmpleadoDao {
     
     
     
-    public void AgregarEmpleado(Empleado empleado) {
+    public boolean AgregarEmpleado(Empleado empleado) {
+    	boolean guardar=false;
         try {
             CallableStatement statement = con.prepareCall("call sp_i_Empleado(?,?,?,?,?,?,?,?,?)");
             statement.setString("pNombre", empleado.getNombre());
@@ -26,7 +27,10 @@ public class EmpleadoDao {
             statement.setString("pNit", empleado.getNit());
             statement.setString("pCargo", empleado.getCargo());
             statement.setString("pDepartamento", empleado.getDepartamento());
-            statement.execute();
+            int res=statement.executeUpdate();
+            if(res>=1) {
+            	guardar=true;
+            }
             
             con.close();
             System.out.println("El Empleado ha sido guardado exitosamente");
@@ -34,11 +38,12 @@ public class EmpleadoDao {
         	System.out.println("UPS! algo ha ido mal al intentar guardar (verifique)" + e);
 
         }
-
+        return guardar;
     }
     
     
-    public void ActualizarEmpleado(Empleado empleado) {
+    public boolean ActualizarEmpleado(Empleado empleado) {
+    	boolean act= false;
         try {
             CallableStatement statement = con.prepareCall("call sp_u_Empleado(?,?,?,?,?,?,?,?,?,?)");
             statement.setInt("pId", empleado.getIdEmpleado());
@@ -51,15 +56,17 @@ public class EmpleadoDao {
             statement.setString("pNit", empleado.getNit());
             statement.setString("pCargo", empleado.getCargo());
             statement.setString("pDepartamento", empleado.getDepartamento());
-            statement.execute();
-            
+            int res= statement.executeUpdate();
+            if(res>=1) {
+            	act=true;
+            }
             con.close();
             System.out.println("El Empleado ha sido actualizado exitosamente");
         } catch (Exception e) {
         	System.out.println("UPS! algo ha ido mal al intentar actualizado (verifique)" + e);
 
         }
-
+        return act;
     }
     
     
