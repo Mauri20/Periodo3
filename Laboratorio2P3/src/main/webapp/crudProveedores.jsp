@@ -286,19 +286,19 @@ function arregloTabla(){
 								</div>
 								<div class="col-lg-6 my-1">
 									<label for="telef" class="form-label">Tel&eacute;fono:</label>
-									<input required type="text" name="Telefono" class="form-control" id="telef" placeholder="(503)2352-7823">
+									<input required type="tel" name="Telefono" pattern="\([0-9]{3}\)[0-9]{4}[-][0-9]{4}" class="form-control" id="telef" placeholder="(503)2352-7823">
 								</div>
 								<div class="col-lg-6 my-1">
 									<label for="correo" class="form-label">Correo:</label>
-									<input required type="text" name="Email" class="form-control" id="correo" placeholder="name@example.com">
+									<input required type="email" name="Email" class="form-control" id="correo" placeholder="name@example.com">
 								</div>
 								<div class="col-lg-6 my-1">
 									<label for="nit" class="form-label">NIT:</label>
-									<input required type="text" name="Nit"  class="form-control" id="nit" placeholder="1234-123456-123-1">
+									<input required type="tel" name="Nit" pattern="[0-9]{4}[-][0-9]{6}[-][0-9]{3}[-][0-9]{1}" class="form-control" id="nit" placeholder="1234-123456-123-1">
 								</div>
 								<div class="col-lg-6 my-1">
 									<label for="nrc" class="form-label">NRC:</label>
-									<input required type="text" name="Nrc"  class="form-control" id="nrc" placeholder="123456-1">
+									<input required type="tel" name="Nrc" pattern="[0-9]{6}[-][0-9]{1}" class="form-control" id="nrc" placeholder="123456-1">
 								</div>
 								<div class="col-lg-12 my-1">
 									<label for="direccion" class="form-label">Direcci&oacute;n:</label>

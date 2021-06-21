@@ -37,7 +37,8 @@
 	</head>
 	
 	
-	<script type="text/javascript">
+<script type="text/javascript">
+//Kevin
 function llenarEmpleados() {
 	$.post('ControllerCargarEmpleados',{
 		//Esta seccion es para enviar peticiones al servidor
@@ -56,6 +57,7 @@ function llenarEmpleados() {
 		}
 	});
 }
+//Oscar
 function cargarUsuarios() {
 	$.post('ControllerShowUsuarios',{
 		//Esta seccion es para enviar peticiones al servidor
@@ -119,6 +121,7 @@ function cargarUsuarios() {
 	`
 	});
 }
+//Cristian
 function llenarForm(IdU,User,Pass,Empleado,Tipo) {
 	resetDiv();
 	$('#id').val(IdU);
@@ -128,6 +131,7 @@ function llenarForm(IdU,User,Pass,Empleado,Tipo) {
 	document.getElementById('listEmpleados').value=Empleado;
 	document.getElementById('listTipo').value=Tipo;
 }
+//Mauricio
 function ejecutar() {
 	resetDiv()
 	let IdUsuario =$('#id').val();
@@ -187,6 +191,7 @@ function ejecutar() {
 		});		
 	}
 }
+//Elmer
 function resetDiv() {
 	if(!$('#result').hasClass('oculto')){
 		let form=document.getElementById('formUsu');
@@ -202,7 +207,7 @@ $(document).ready(function (){
 	cargarUsuarios();
 });
 	
-	</script>
+</script>
 	
 
 <body>
@@ -217,18 +222,7 @@ $(document).ready(function (){
 			</div>
 		</div>
 	</div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		
 	<!-- Modal Agregar-->
 	<div class="modal fade" id="exampleModal" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">

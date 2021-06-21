@@ -52,6 +52,7 @@
 
 
 <script type="text/javascript">
+//Cristian
 function resetDiv() {
 	if(!$('#result').hasClass('oculto')){
 		let form=document.getElementById('formEmpleado');
@@ -62,7 +63,7 @@ function resetDiv() {
 		tex.innerText="";
 	}
 }
-
+//Elmer
 function cargarEmpleados() {
 	$.post('ControllerShowEmpleados',{
 		//Esta seccion es para enviar peticiones al servidor
@@ -110,7 +111,7 @@ function cargarEmpleados() {
 				<td class="align-middle"> ${item.Departamento} </td>
 				<td><a href="ControllerShowEmpleados?Id=${item.idEmpleado}&Eliminar=btne" class="btn btn-danger"> <i class="fas fa-user-minus"></i>&nbsp;Eliminar </td>
 				<td> <a onclick="llenarform('${item.idEmpleado}','${item.Nombre}','${item.Apellido}',
-					'${item.Sexo}','${item.Direccion}','${item.Telefono}','${item.Dui}','${item.Nit}','${item.Cargo}','${item.Departamento}' )" 
+					'${item.Sexo}','${item.Telefono}','${item.Dui}','${item.Nit}','${item.Cargo}','${item.Departamento}','${item.Direccion}' )" 
 					name="emple" class="btn btn-info" data-bs-toggle="modal" 
 					data-bs-target="#exampleModal" type="button" id="button-addon2"><i class="fas fa-user-edit"></i>&nbsp;Actualizar </td>		
 			</tr>			
@@ -127,6 +128,7 @@ function cargarEmpleados() {
 		`
 	});
 }
+//Kevin
 function ejecutar(){
 	resetDiv();
 	//Obtencion de parametros
@@ -190,11 +192,10 @@ function ejecutar(){
 		});
 	}
 }
+//Denis
 $(document).ready(function (){
 	cargarEmpleados();
-});
-	
-	
+});	
 function llenarform(IdE,Nombre,Apellido,Sexo,Telefono,Dui,Nit,Cargo,Departamento,Direccion) 
 {
 	resetDiv();
@@ -202,12 +203,13 @@ function llenarform(IdE,Nombre,Apellido,Sexo,Telefono,Dui,Nit,Cargo,Departamento
 	$('#nombreEmple').val(Nombre)
 	$('#ApellidoEmple').val(Apellido);
 	$('#SexoEmple').val(Sexo);
-	$('#direc').val(Direccion);
+	
 	$('#telef').val(Telefono);
 	$('#DuiEmple').val(Dui);
 	$('#NitEmple').val(Nit);
 	$('#CargoEmple').val(Cargo);
 	$('#DepartamentoEmple').val(Departamento);
+	$('#direc').val(Direccion);
 }
 	
 
